@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Dz6-71-2cc" customClass="SwitchCell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgV-bB-ea4">
+                    <rect key="frame" x="343" y="12" width="51" height="31"/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZk-k5-fnR">
+                    <rect key="frame" x="20" y="17" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IzV-Mb-Tz4" userLabel="MaskView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="bVU-TI-fdK"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="uZk-k5-fnR" firstAttribute="centerY" secondItem="bVU-TI-fdK" secondAttribute="centerY" id="1tX-Cr-lAy"/>
+                <constraint firstItem="IzV-Mb-Tz4" firstAttribute="bottom" secondItem="bVU-TI-fdK" secondAttribute="bottom" id="JCr-9t-WVI"/>
+                <constraint firstItem="uZk-k5-fnR" firstAttribute="leading" secondItem="bVU-TI-fdK" secondAttribute="leading" constant="20" id="Nyo-fe-Lge"/>
+                <constraint firstItem="bVU-TI-fdK" firstAttribute="top" secondItem="IzV-Mb-Tz4" secondAttribute="top" id="YWK-yD-ptB"/>
+                <constraint firstItem="IzV-Mb-Tz4" firstAttribute="leading" secondItem="bVU-TI-fdK" secondAttribute="leading" id="ata-xx-OgF"/>
+                <constraint firstItem="bgV-bB-ea4" firstAttribute="centerY" secondItem="bVU-TI-fdK" secondAttribute="centerY" id="d4f-YK-8ah"/>
+                <constraint firstItem="bVU-TI-fdK" firstAttribute="trailing" secondItem="bgV-bB-ea4" secondAttribute="trailing" constant="22" id="io7-dS-Ql3"/>
+                <constraint firstItem="bVU-TI-fdK" firstAttribute="trailing" secondItem="IzV-Mb-Tz4" secondAttribute="trailing" id="q6d-W1-k7d"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="switchItem" destination="bgV-bB-ea4" id="TQ9-c2-oB7"/>
+                <outlet property="switchLabel" destination="uZk-k5-fnR" id="Q4b-g8-ucf"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="152.85326086956522"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

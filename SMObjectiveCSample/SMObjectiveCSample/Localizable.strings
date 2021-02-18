@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  SMObjectiveCSample
+*/
+
+//Headers
+
+"ServerConnection" = "Server Connection (required)";
+
+"AccessToken" = "Access Token (required)";
+
+//Cells
+
+"EnableOrchestration" = "Enable Orchestration Server";
+
+"UseJWT" = "Use an existing JWT";
+
+"ServerUrl" = "DIGITAL PERSON SERVER URL";
+
+"KeyName" = "KEY NAME";
+
+"PrivateKey" = "PRIVATE KEY";
+
+"OrchestrationUrl" = "Orchestration Server URL";
+
+"JWTString" = "JSON Web Token - above keys will be ignored.";
+
