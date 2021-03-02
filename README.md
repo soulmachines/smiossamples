@@ -6,16 +6,76 @@ This workspace shows how to use the Soul Machines iOS SDK and pull the library i
 
 Open the workspace in Xcode, and update the target to either `SMSwiftSample` or `SMObjectiveCSample`. The project should automatically import dependencies via Swift Package Manager. After this process has completed, run the project.
 
+### Objective-C Project
+
+The Objective-C sample requires a dependency installed via [Carthage](https://github.com/Carthage/Carthage). The command required for execution can be found below.
+
+```console
+foo@bar dir % cd SMObjectiveCSample
+foo@bar dir % sh carthage_build.sh update --platform ios
+```
+
+## Minimum requirements
+
+SMDarwin supports iOS 11 and above.
+
 ## Importing the library
 
-**Swift Packages**
+### Swift Packages
 
-**Carthage**
+Add the SMDarwin repository `git@github.com:soulmachines/SMDarwin.git` via Swift Package Manager, along with the following dependencies:
+* `https://github.com/daltoniam/Starscream.git` from `4.0.0`, 
+* `https://github.com/alexpiezo/WebRTC.git` from `1.0.0`, and
+* `https://github.com/Flight-School/AnyCodable` from `0.4.0`
 
-**CocoaPods**
+Alternatively, to integrate via a Package.swift manifest instead of Xcode, you can add SMDarwin and its dependencies to the dependencies array of your package with the following:
+```swift
+dependencies: [
+    .package(url: "git@github.com:soulmachines/SMDarwin.git", from "1.0.0")
+    .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0"),
+    .package(url: "https://github.com/alexpiezo/WebRTC.git", from: "1.0.0"),
+    .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.4.0")
+]
+```
 
-**Using the library**
-Import the library by using `import SMDarwin`.
+### Carthage 
+
+TK: Carthage does not currently support distributing prebuilt xcframeworks.
+
+### CocoaPods 
+
+Add the following source to your `podfile`:
+```gem
+source 'https://github.com/CocoaPods/Specs.git'
+source 'git@github.com:soulmachines/SoulMachines-Specs.git'
+```
+
+Next add the following pods to the `podfile`:
+```gem
+pod 'SMDarwin', '~> 1.0.0'
+pod 'Starscream', '~> 4.0.0'
+pod 'AnyCodable-FlightSchool', '~> 0.4.0'
+```
+
+Run the following commands to download the libraries and integrate into the xcode project.
+```console
+foo@bar dir $ pod install
+```
+
+Note that the [WebRTC](https://github.com/alexpiezo/WebRTC) dependency does not support installation via Carthage, so the instructions at the [git repository](https://github.com/alexpiezo/WebRTC) for installing a manual release should be followed.
+
+### Direct
+
+Download the SMDarwin repository `https://github.com/soulmachines/SMDarwin.git` and add `SMDarwin.xcframework` to your project.
+
+Install the following dependencies from their git repositories. If instructions are not available, they should be able to be built as an archive or added as subprojects to the active workspace.
+* [WebRTC](https://github.com/alexpiezo/WebRTC)
+* [Starscream](https://github.com/daltoniam/Starscream)
+* [AnyCodable](https://github.com/Flight-School/AnyCodable)
+
+## Using the library
+
+Import the library by using `import SMDarwin` or `#import <SMDarwin/SMDarwin.h>`. Further information can be found in the documentation packaged with the SDK.
 
 ## Initialising the Logger
 
@@ -240,6 +300,8 @@ To maintain a connection when the App is backgrounded, the `Background Modes` Ca
 If electing not to maintain connections when backgrounded, then the Application should call `scene?.disconnect()` on the `didEnterBackground` event.
 
 ## Distribution
+
+The functionality within SMDarwin will request both microphone and camera access. While connections can function without these permissions (sending messages to the `Persona` using `conversationSend(text: String, variables: VariablesModel?, optionalArgs: ConversationOptionalArgs?)`), it is a requirement of Apps submitted to the App Store that do request these permissions contain both the `NSMicrophoneUsageDescription` and `NSCameraUsageDescription` in the `Info.plist` file. If these are not present, the binary will be rejected.
 
 When uploading to AppStoreConnect, simulator frameworks should be removed from the archive. This can be done with the script below, or other such options.
 

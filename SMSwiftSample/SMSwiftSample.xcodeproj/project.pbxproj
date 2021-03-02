@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD044B4F25E85E31009195DE /* SMDarwin in Frameworks */ = {isa = PBXBuildFile; productRef = CD044B4E25E85E31009195DE /* SMDarwin */; };
+		CD66F62825E36253005F6F7B /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F62725E36253005F6F7B /* Starscream */; };
+		CD66F62B25E36285005F6F7B /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F62A25E36285005F6F7B /* WebRTC */; };
+		CD66F63425E362CD005F6F7B /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F63325E362CD005F6F7B /* AnyCodable */; };
 		CD8E4EFF258AAB4900EE353C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E4EFE258AAB4900EE353C /* AppDelegate.swift */; };
 		CD8E4F01258AAB4900EE353C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E4F00258AAB4900EE353C /* SceneDelegate.swift */; };
 		CD8E4F03258AAB4900EE353C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E4F02258AAB4900EE353C /* ViewController.swift */; };
 		CD8E4F06258AAB4900EE353C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8E4F04258AAB4900EE353C /* Main.storyboard */; };
 		CD8E4F08258AAB4A00EE353C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD8E4F07258AAB4A00EE353C /* Assets.xcassets */; };
 		CD8E4F0B258AAB4A00EE353C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8E4F09258AAB4A00EE353C /* LaunchScreen.storyboard */; };
-		CD8E4F15258AAD0600EE353C /* SMDarwin.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD8E4F14258AAD0600EE353C /* SMDarwin.xcframework */; };
 		CD8E4F1A258AE5A900EE353C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E4F19258AE5A900EE353C /* SettingsViewController.swift */; };
-		CDA7F75A25BF6ADD00DCE6D0 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CDA7F75925BF6ADD00DCE6D0 /* AnyCodable */; };
-		CDA7F75C25BF6ADD00DCE6D0 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = CDA7F75B25BF6ADD00DCE6D0 /* Starscream */; };
-		CDA7F75E25BF6ADD00DCE6D0 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = CDA7F75D25BF6ADD00DCE6D0 /* WebRTC */; };
 		CDB4B3B5258C3C08008364E4 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3B4258C3C08008364E4 /* SwitchCell.swift */; };
 		CDB4B3B7258C3C15008364E4 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB4B3B6258C3C15008364E4 /* SwitchCell.xib */; };
 		CDB4B3B9258C3C25008364E4 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3B8258C3C25008364E4 /* InputCell.swift */; };
@@ -64,11 +64,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDA7F75E25BF6ADD00DCE6D0 /* WebRTC in Frameworks */,
+				CD044B4F25E85E31009195DE /* SMDarwin in Frameworks */,
 				CDB4B3C2259030DD008364E4 /* SwiftJWT in Frameworks */,
-				CDA7F75A25BF6ADD00DCE6D0 /* AnyCodable in Frameworks */,
-				CD8E4F15258AAD0600EE353C /* SMDarwin.xcframework in Frameworks */,
-				CDA7F75C25BF6ADD00DCE6D0 /* Starscream in Frameworks */,
+				CD66F62B25E36285005F6F7B /* WebRTC in Frameworks */,
+				CD66F62825E36253005F6F7B /* Starscream in Frameworks */,
+				CD66F63425E362CD005F6F7B /* AnyCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,9 +149,10 @@
 			name = SMSwiftSample;
 			packageProductDependencies = (
 				CDB4B3C1259030DD008364E4 /* SwiftJWT */,
-				CDA7F75925BF6ADD00DCE6D0 /* AnyCodable */,
-				CDA7F75B25BF6ADD00DCE6D0 /* Starscream */,
-				CDA7F75D25BF6ADD00DCE6D0 /* WebRTC */,
+				CD66F62725E36253005F6F7B /* Starscream */,
+				CD66F62A25E36285005F6F7B /* WebRTC */,
+				CD66F63325E362CD005F6F7B /* AnyCodable */,
+				CD044B4E25E85E31009195DE /* SMDarwin */,
 			);
 			productName = SMSwiftSample;
 			productReference = CD8E4EFB258AAB4900EE353C /* SMSwiftSample.app */;
@@ -182,9 +183,10 @@
 			mainGroup = CD8E4EF2258AAB4900EE353C;
 			packageReferences = (
 				CDB4B3C0259030DD008364E4 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
-				CD43B96325B7874D003C09FF /* XCRemoteSwiftPackageReference "AnyCodable" */,
-				CD43B96625B787EA003C09FF /* XCRemoteSwiftPackageReference "Starscream" */,
-				CD43B96925B78827003C09FF /* XCRemoteSwiftPackageReference "WebRTC" */,
+				CD66F62625E36253005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */,
+				CD66F62925E36285005F6F7B /* XCRemoteSwiftPackageReference "WebRTC" */,
+				CD66F63225E362CD005F6F7B /* XCRemoteSwiftPackageReference "AnyCodable" */,
+				CD044B4D25E85E31009195DE /* XCRemoteSwiftPackageReference "SMDarwin" */,
 			);
 			productRefGroup = CD8E4EFC258AAB4900EE353C /* Products */;
 			projectDirPath = "";
@@ -307,6 +309,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -369,6 +372,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -459,15 +463,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CD43B96325B7874D003C09FF /* XCRemoteSwiftPackageReference "AnyCodable" */ = {
+		CD044B4D25E85E31009195DE /* XCRemoteSwiftPackageReference "SMDarwin" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Flight-School/AnyCodable";
+			repositoryURL = "git@github.com:soulmachines/SMDarwin.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
+				minimumVersion = 1.0.0;
 			};
 		};
-		CD43B96625B787EA003C09FF /* XCRemoteSwiftPackageReference "Starscream" */ = {
+		CD66F62625E36253005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daltoniam/Starscream.git";
 			requirement = {
@@ -475,12 +479,20 @@
 				minimumVersion = 4.0.4;
 			};
 		};
-		CD43B96925B78827003C09FF /* XCRemoteSwiftPackageReference "WebRTC" */ = {
+		CD66F62925E36285005F6F7B /* XCRemoteSwiftPackageReference "WebRTC" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alexpiezo/WebRTC.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.31567;
+			};
+		};
+		CD66F63225E362CD005F6F7B /* XCRemoteSwiftPackageReference "AnyCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flight-School/AnyCodable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
 			};
 		};
 		CDB4B3C0259030DD008364E4 /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
@@ -494,20 +506,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CDA7F75925BF6ADD00DCE6D0 /* AnyCodable */ = {
+		CD044B4E25E85E31009195DE /* SMDarwin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD43B96325B7874D003C09FF /* XCRemoteSwiftPackageReference "AnyCodable" */;
-			productName = AnyCodable;
+			package = CD044B4D25E85E31009195DE /* XCRemoteSwiftPackageReference "SMDarwin" */;
+			productName = SMDarwin;
 		};
-		CDA7F75B25BF6ADD00DCE6D0 /* Starscream */ = {
+		CD66F62725E36253005F6F7B /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD43B96625B787EA003C09FF /* XCRemoteSwiftPackageReference "Starscream" */;
+			package = CD66F62625E36253005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
 		};
-		CDA7F75D25BF6ADD00DCE6D0 /* WebRTC */ = {
+		CD66F62A25E36285005F6F7B /* WebRTC */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD43B96925B78827003C09FF /* XCRemoteSwiftPackageReference "WebRTC" */;
+			package = CD66F62925E36285005F6F7B /* XCRemoteSwiftPackageReference "WebRTC" */;
 			productName = WebRTC;
+		};
+		CD66F63325E362CD005F6F7B /* AnyCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD66F63225E362CD005F6F7B /* XCRemoteSwiftPackageReference "AnyCodable" */;
+			productName = AnyCodable;
 		};
 		CDB4B3C1259030DD008364E4 /* SwiftJWT */ = {
 			isa = XCSwiftPackageProductDependency;
