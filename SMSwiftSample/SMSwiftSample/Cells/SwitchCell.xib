@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SwitchCell" customModule="SMSwiftSample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbW-No-11q">
+                    <rect key="frame" x="343" y="12" width="51" height="31"/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gme-5d-hp5">
+                    <rect key="frame" x="20" y="17" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNk-UW-g7k" userLabel="MaskView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="tNk-UW-g7k" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="3Ik-Up-KjK"/>
+                <constraint firstItem="zbW-No-11q" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="HaL-8S-msR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="tNk-UW-g7k" secondAttribute="top" id="YQS-fy-hpQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tNk-UW-g7k" secondAttribute="trailing" id="cca-7O-yXP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zbW-No-11q" secondAttribute="trailing" constant="22" id="qWc-js-xaj"/>
+                <constraint firstItem="gme-5d-hp5" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="uGP-go-pxn"/>
+                <constraint firstItem="tNk-UW-g7k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xj2-mL-2jt"/>
+                <constraint firstItem="gme-5d-hp5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="zrD-z9-JhA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="switchItem" destination="zbW-No-11q" id="HLh-Ch-Z6T"/>
+                <outlet property="switchLabel" destination="gme-5d-hp5" id="8dq-bA-UKp"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="152.85326086956522"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
