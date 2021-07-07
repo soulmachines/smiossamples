@@ -18,31 +18,34 @@ foo@bar dir % sh carthage_build.sh update --platform ios
 ## Minimum requirements
 
 SMDarwin supports iOS 11 and above.
+SMDarwin 1.0.4 and above depend on [WebRTC_iOS](https://github.com/soulmachines/WebRTC_iOS).
 
 ## Importing the library
 
 ### Swift Packages
 
 Add the SMDarwin repository `git@github.com:soulmachines/SMDarwin.git` via Swift Package Manager, along with the following dependencies:
-* `https://github.com/daltoniam/Starscream.git` from `4.0.0`, 
-* `https://github.com/alexpiezo/WebRTC.git` from `1.0.0`, and
+* `git@github.com:soulmachines/WebRTC_iOS.git` from `1.0.0`,
+* `https://github.com/daltoniam/Starscream.git` from `4.0.0`, and
 * `https://github.com/Flight-School/AnyCodable` from `0.4.0`
 
 Alternatively, to integrate via a Package.swift manifest instead of Xcode, you can add SMDarwin and its dependencies to the dependencies array of your package with the following:
 ```swift
 dependencies: [
-    .package(url: "git@github.com:soulmachines/SMDarwin.git", from "1.0.0")
+    .package(url: "git@github.com:soulmachines/SMDarwin.git", from "1.0.4"),
+    .package(url: "git@github.com:soulmachines/WebRTC_iOS.git", from: "1.0.0"),
     .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0"),
-    .package(url: "https://github.com/alexpiezo/WebRTC.git", from: "1.0.0"),
     .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.4.0")
 ]
 ```
 
-### Carthage 
-
-TK: Carthage does not currently support distributing prebuilt xcframeworks.
-
 ### CocoaPods 
+
+Add the SoulMachines-Specs repo to your CocoaPods installation
+
+```console
+pod repo add SoulMachines-Specs git@github.com:soulmachines/SoulMachines-Specs.git
+```
 
 Add the following source to your `podfile`:
 ```gem
@@ -52,7 +55,8 @@ source 'git@github.com:soulmachines/SoulMachines-Specs.git'
 
 Next add the following pods to the `podfile`:
 ```gem
-pod 'SMDarwin', '~> 1.0.0'
+pod 'SMDarwin', '~> 1.0.4'
+pod 'WebRTC_iOS', '~> 1.0.0'
 pod 'Starscream', '~> 4.0.0'
 pod 'AnyCodable-FlightSchool', '~> 0.4.0'
 ```
@@ -62,14 +66,15 @@ Run the following commands to download the libraries and integrate into the xcod
 foo@bar dir $ pod install
 ```
 
-Note that the [WebRTC](https://github.com/alexpiezo/WebRTC) dependency does not support installation via Carthage, so the instructions at the [git repository](https://github.com/alexpiezo/WebRTC) for installing a manual release should be followed.
+### Carthage 
+
+TK: Carthage does not currently support distributing prebuilt xcframeworks.
 
 ### Direct
 
-Download the SMDarwin repository `https://github.com/soulmachines/SMDarwin.git` and add `SMDarwin.xcframework` to your project.
+Download the SMDarwin repository `https://github.com/soulmachines/SMDarwin.git` and add `SMDarwin.xcframework` to your project. Also download the WebRTC repository `https://github.com/soulmachines/WebRTC_iOS.git` and add `WebRTC.xcframework` to your project.
 
 Install the following dependencies from their git repositories. If instructions are not available, they should be able to be built as an archive or added as subprojects to the active workspace.
-* [WebRTC](https://github.com/alexpiezo/WebRTC)
 * [Starscream](https://github.com/daltoniam/Starscream)
 * [AnyCodable](https://github.com/Flight-School/AnyCodable)
 
@@ -84,8 +89,13 @@ The SDK includes a `LoggingCenter` that supports several log types. If this isn'
 * `Console`, which will output to the terminal, and
 * `Callback`, which will pipe the log string to the provided callback.
 
+The default log level is `Error`. This reports only error level messages, however the following options are also available:
+* `Warning`: Reports warnings in addition to `Error` level messages.
+* `Info`: Reports information messages, in addition to `Warning` and `Error` messages.
+
 ```swift
 let error = LoggingCenter.loggingCenter.set(logType: .Console)
+LoggingCenter.loggingCenter.set(logSeverity: .Warning)
 
 if error != nil {
     debugPrint("Error encountered setting up the logging center: \(error.debugDescription)")
@@ -94,6 +104,8 @@ if error != nil {
 
 ```objective-c
 CompletionError* error = [LoggingCenter.loggingCenter setWithLogType:LogTypeConsole filename:nil callback:nil];
+LoggingCenter.loggingCenter setLogSeverity:LogSeverityWarning];
+
 if (nil != error)
 {
     NSLog(@"Encountered error setting up the logging center: %@", error);
@@ -299,9 +311,11 @@ To maintain a connection when the App is backgrounded, the `Background Modes` Ca
 
 If electing not to maintain connections when backgrounded, then the Application should call `scene?.disconnect()` on the `didEnterBackground` event.
 
+Note that to maintain the call during the use of other Apps, CallKit functionality should be integrated within applications utilising this SDK.
+
 ## Distribution
 
-The functionality within SMDarwin will request both microphone and camera access. While connections can function without these permissions (sending messages to the `Persona` using `conversationSend(text: String, variables: VariablesModel?, optionalArgs: ConversationOptionalArgs?)`), it is a requirement of Apps submitted to the App Store that do request these permissions contain both the `NSMicrophoneUsageDescription` and `NSCameraUsageDescription` in the `Info.plist` file. If these are not present, the binary will be rejected.
+The functionality within SMDarwin will request both microphone and camera access. While connections can function without these permissions (through sending messages to the `Persona` using `conversationSend(text: String, variables: VariablesModel?, optionalArgs: ConversationOptionalArgs?)`), it is a requirement of Apps submitted to the App Store that do request these permissions contain both the `NSMicrophoneUsageDescription` and `NSCameraUsageDescription` in the `Info.plist` file. If these are not present, the binary will be rejected.
 
 When uploading to AppStoreConnect, simulator frameworks should be removed from the archive. This can be done with the script below, or other such options.
 
