@@ -10,4 +10,7 @@
    <FileRef
       location = "group:SMSwiftSample/SMSwiftSample.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:SMObjectiveCSample/Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

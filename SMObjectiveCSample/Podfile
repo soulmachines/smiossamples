@@ -1,0 +1,16 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'git@github.com:soulmachines/SoulMachines-Specs.git'
+
+platform :ios, '11.0'
+use_frameworks!
+
+workspace '../SMSampleProjects'
+project 'SMObjectiveCSample.xcodeproj'
+
+target 'SMObjectiveCSample' do
+  pod 'JWT', '~> 2.2.0'
+  pod 'SMDarwin'
+  pod 'WebRTC_iOS'
+  pod 'Starscream', '~> 4.0.0'
+  pod 'AnyCodable-FlightSchool', '~> 0.4.0'
+end

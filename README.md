@@ -4,15 +4,20 @@ This workspace shows how to use the Soul Machines iOS SDK and pull the library i
 
 ## Project Setup
 
-Open the workspace in Xcode, and update the target to either `SMSwiftSample` or `SMObjectiveCSample`. The project should automatically import dependencies via Swift Package Manager. After this process has completed, run the project.
+Open the workspace in Xcode, and update the target to either `SMSwiftSample` or `SMObjectiveCSample`. 
+
+### Swift Project
+
+The Swift project should automatically import dependencies via Swift Package Manager. After this process has completed, run the project.
 
 ### Objective-C Project
 
-The Objective-C sample requires a dependency installed via [Carthage](https://github.com/Carthage/Carthage). The command required for execution can be found below.
+The Objective-C sample demonstrates [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) integration. Assuming CocoaPods is installed, first add the SoulMachines-Specs repo to your CocoaPods installation, and then navigate to the Objective-C sample directory and install the pods. Both of these steps are shown below.
 
 ```console
+foo@bar dir % pod repo add SoulMachines-Specs git@github.com:soulmachines/SoulMachines-Specs.git
 foo@bar dir % cd SMObjectiveCSample
-foo@bar dir % sh carthage_build.sh update --platform ios
+foo@bar dir % pod install
 ```
 
 ## Minimum requirements
@@ -32,7 +37,7 @@ Add the SMDarwin repository `git@github.com:soulmachines/SMDarwin.git` via Swift
 Alternatively, to integrate via a Package.swift manifest instead of Xcode, you can add SMDarwin and its dependencies to the dependencies array of your package with the following:
 ```swift
 dependencies: [
-    .package(url: "git@github.com:soulmachines/SMDarwin.git", from "1.0.4"),
+    .package(url: "git@github.com:soulmachines/SMDarwin.git", from "1.1.0"),
     .package(url: "git@github.com:soulmachines/WebRTC_iOS.git", from: "1.0.0"),
     .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0"),
     .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.4.0")
@@ -55,7 +60,7 @@ source 'git@github.com:soulmachines/SoulMachines-Specs.git'
 
 Next add the following pods to the `podfile`:
 ```gem
-pod 'SMDarwin', '~> 1.0.4'
+pod 'SMDarwin', '~> 1.1.0'
 pod 'WebRTC_iOS', '~> 1.0.0'
 pod 'Starscream', '~> 4.0.0'
 pod 'AnyCodable-FlightSchool', '~> 0.4.0'
