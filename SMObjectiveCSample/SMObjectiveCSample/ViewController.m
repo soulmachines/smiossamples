@@ -7,11 +7,11 @@
 #import "Enums.h"
 #import <JWT/JWT.h>
 #import <AVKit/AVKit.h>
+#import <SMDarwin/SMDarwin.h>
 
 @import SMDarwin;
 
 @interface ViewController ()
-
 
 @end
 
@@ -19,6 +19,7 @@
 
 @synthesize scene;
 @synthesize isMuted;
+@synthesize context;
 
 static NSString *filename = @"SMObjectiveCSample_Log";
 
@@ -36,12 +37,14 @@ typedef enum CameraViewDirection {
     self.connectButton.tintColor = UIColor.greenColor;
     // Do any additional setup after loading the view.
     CompletionError* loggingError = [LoggingCenter.loggingCenter setWithLogType:LogTypeFile filename:filename callback:nil];
+    [LoggingCenter.loggingCenter setWithLogSeverity:LogSeverityWarning];
     if (nil != loggingError)
     {
         NSLog(@"Encountered error when setting up logger: %@", loggingError);
     }
     
     self.scene = [SceneFactory createWithUserMediaOptions: UserMediaOptionsMicrophoneAndCamera];
+    self.context = [[Context alloc] init];
     
     //Note that the SDK will request permissions normally as the connection occurs, if microphone isn't granted the persona can still be interacted with using the `conversationSend` Scene message.
     [self requestPermissions];
@@ -114,6 +117,7 @@ typedef enum CameraViewDirection {
                 [self.muteButton setHidden:false];
                 [self.cameraControlView setHidden:false];
                 self.connectButton.tintColor = UIColor.redColor;
+                [self.context setScene:self.scene];
             }
         });
     }];
