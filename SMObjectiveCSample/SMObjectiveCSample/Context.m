@@ -14,6 +14,7 @@
 
 @property NSMutableDictionary *cardDictionary;
 @property (nonatomic) id<Scene> scene;
+@property (nonatomic, weak) id<ContextDelegate> delegate;
 
 @end
 
@@ -41,7 +42,12 @@
         [personas[i] removeOnSpeechMarkerEventListener:self];
     }
     
-    self.scene = nil;
+    _scene = nil;
+}
+
+- (void) setDelegate:(id<ContextDelegate>)delegate
+{
+    _delegate = delegate;
 }
 
 - (void) setScene:(id<Scene>) scene
@@ -223,13 +229,25 @@
         NSString *cardName = body.arguments.firstObject;
         id<Card> cardModel = self.cardDictionary[cardName];
         
-        NSLog(@"requested to show card: %@ withModel: %@", cardName, cardModel);
+        if(nil != self.delegate)
+        {
+            [self.delegate showCard:cardModel];
+        }
     }
     if([body.name isEqualToString:@"hidecards"])
     {
         NSString *cardName = body.arguments.firstObject;
+        id<Card> cardModel = nil;
         
-        NSLog(@"requested to hide card: %@", cardName);
+        if (cardName != nil)
+        {
+            cardModel = self.cardDictionary[cardName];
+        }
+        
+        if(nil != self.delegate)
+        {
+            [self.delegate hideCard:cardModel];
+        }
     }
 }
 

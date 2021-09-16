@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -128,6 +127,17 @@
                                     <action selector="didToggleConnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ML5-34-A5f"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-xP-Xls">
+                                <rect key="frame" x="52.5" y="802" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qZE-xP-Xls" secondAttribute="height" multiplier="1:1" id="4Kb-VK-Q7U"/>
+                                    <constraint firstAttribute="width" constant="40" id="OHh-iL-AMW"/>
+                                </constraints>
+                                <state key="normal" image="square.split.bottomrightquarter.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="toggleContentAwarenessViewCreation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i3P-Ub-IA2"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiB-mA-vch" userLabel="MuteButton">
                                 <rect key="frame" x="321.5" y="802" width="40" height="40"/>
                                 <constraints>
@@ -155,12 +165,14 @@
                             <constraint firstItem="6c0-lh-gZP" firstAttribute="top" secondItem="Bbr-Fw-QI7" secondAttribute="bottom" id="Q2U-TU-EB2"/>
                             <constraint firstItem="XiB-mA-vch" firstAttribute="centerX" secondItem="MQW-ek-fMK" secondAttribute="centerX" multiplier="1.65" id="Qox-p1-HTD"/>
                             <constraint firstItem="e25-sv-MqC" firstAttribute="centerX" secondItem="MQW-ek-fMK" secondAttribute="centerX" id="UQy-Lb-a74"/>
+                            <constraint firstItem="qZE-xP-Xls" firstAttribute="centerX" secondItem="MQW-ek-fMK" secondAttribute="centerX" multiplier="0.35" id="Yy0-BM-tLt"/>
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="bottom" secondItem="e25-sv-MqC" secondAttribute="bottom" constant="20" id="aI8-Sb-fZi"/>
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="trailing" secondItem="Bbr-Fw-QI7" secondAttribute="trailing" id="awD-sG-3bP"/>
                             <constraint firstItem="kBg-10-OtX" firstAttribute="top" secondItem="Bbr-Fw-QI7" secondAttribute="bottom" constant="50" id="fTV-Xd-Php"/>
                             <constraint firstItem="Bbr-Fw-QI7" firstAttribute="top" secondItem="MQW-ek-fMK" secondAttribute="top" id="fj7-jF-4TI"/>
                             <constraint firstItem="Bbr-Fw-QI7" firstAttribute="leading" secondItem="MQW-ek-fMK" secondAttribute="leading" id="gQz-Zj-Fsy"/>
                             <constraint firstItem="e25-sv-MqC" firstAttribute="top" secondItem="Q5Q-PW-YSv" secondAttribute="bottom" constant="20" id="haW-hZ-vfF"/>
+                            <constraint firstItem="qZE-xP-Xls" firstAttribute="centerY" secondItem="e25-sv-MqC" secondAttribute="centerY" id="ioP-LI-682"/>
                             <constraint firstItem="6c0-lh-gZP" firstAttribute="leading" secondItem="MQW-ek-fMK" secondAttribute="leading" id="nnR-mx-phw"/>
                             <constraint firstItem="qld-5U-4dT" firstAttribute="centerY" secondItem="MQW-ek-fMK" secondAttribute="centerY" id="rId-Hg-GGE"/>
                         </constraints>
@@ -169,6 +181,7 @@
                         <outlet property="activityIndicator" destination="qld-5U-4dT" id="9bO-Dp-dmt"/>
                         <outlet property="cameraControlView" destination="Q5Q-PW-YSv" id="aOZ-Sz-8rz"/>
                         <outlet property="connectButton" destination="e25-sv-MqC" id="DnH-jx-gVC"/>
+                        <outlet property="contentAwareButton" destination="qZE-xP-Xls" id="6Lw-vO-H7q"/>
                         <outlet property="localView" destination="kBg-10-OtX" id="97L-Lx-WCC"/>
                         <outlet property="muteButton" destination="XiB-mA-vch" id="WTT-0Z-vj7"/>
                         <outlet property="remoteView" destination="6c0-lh-gZP" id="pVd-mW-DjV"/>
@@ -219,6 +232,7 @@
         <image name="mic.fill" catalog="system" width="108" height="128"/>
         <image name="mic.slash.fill" catalog="system" width="108" height="128"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
+        <image name="square.split.bottomrightquarter.fill" catalog="system" width="128" height="116"/>
         <image name="video.fill" catalog="system" width="128" height="82"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

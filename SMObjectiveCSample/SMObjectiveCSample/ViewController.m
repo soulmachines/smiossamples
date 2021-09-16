@@ -3,19 +3,25 @@
 //  SMObjectiveCSample
 //
 
-#import "ViewController.h"
-#import "Enums.h"
-#import <JWT/JWT.h>
+#import <UIKit/UIKit.h>
 #import <AVKit/AVKit.h>
 #import <SMDarwin/SMDarwin.h>
+#import <JWT/JWT.h>
+#import "Enums.h"
+#import "ContentAwareView.h"
+#import "ViewController.h"
 
 @import SMDarwin;
 
-@interface ViewController ()
+@interface ViewController () <ContextDelegate>
 
 @end
 
 @implementation ViewController
+
+BOOL contentAwareViewAddingEnabled = FALSE;
+UITapGestureRecognizer *tapGestureRecognizer = nil;
+ContentAwareView *contentAwareView = nil;
 
 @synthesize scene;
 @synthesize isMuted;
@@ -33,6 +39,7 @@ typedef enum CameraViewDirection {
 {
     [super viewDidLoad];
     [self.muteButton setHidden:true];
+    [self.contentAwareButton setHidden:true];
     [self.cameraControlView setHidden:true];
     self.connectButton.tintColor = UIColor.greenColor;
     // Do any additional setup after loading the view.
@@ -42,6 +49,10 @@ typedef enum CameraViewDirection {
     {
         NSLog(@"Encountered error when setting up logger: %@", loggingError);
     }
+    
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(displayViewAtRecognizerLocation:)];
+    contentAwareView = [[ContentAwareView alloc] init];
+    [contentAwareView setBackgroundColor:UIColor.systemPinkColor];
     
     self.scene = [SceneFactory createWithUserMediaOptions: UserMediaOptionsMicrophoneAndCamera];
     self.context = [[Context alloc] init];
@@ -71,6 +82,7 @@ typedef enum CameraViewDirection {
     [self.scene disconnect];
     self.connectButton.tintColor = UIColor.greenColor;
     [self.muteButton setHidden:true];
+    [self.contentAwareButton setHidden:true];
     [self.cameraControlView setHidden:true];
 }
 
@@ -115,6 +127,7 @@ typedef enum CameraViewDirection {
             {
                 NSLog(@"Successful scene connection.");
                 [self.muteButton setHidden:false];
+                [self.contentAwareButton setHidden:false];
                 [self.cameraControlView setHidden:false];
                 self.connectButton.tintColor = UIColor.redColor;
                 [self.context setScene:self.scene];
@@ -315,6 +328,53 @@ typedef enum CameraViewDirection {
     }
     
     [controller dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void) hideCard:(nullable id<Card>)card
+{
+    NSLog(@"requested to hide card with model: %@", card);
+}
+
+- (void) showCard:(id<Card> _Nonnull)card
+{
+    NSLog(@"requested to show card with model: %@", card);
+}
+
+- (void) displayViewAtRecognizerLocation: (UITapGestureRecognizer *) recognizer
+{
+    CGPoint locationInView = [recognizer locationInView:self.remoteView];
+    [contentAwareView setFrame:CGRectMake(locationInView.x - 20, locationInView.y - 20, 40, 40)];
+    
+    if (contentAwareView.superview == nil)
+    {
+        [self.remoteView addSubview:contentAwareView];
+        [[self.scene getContentAwareness] addWithContent:contentAwareView];
+    }
+    
+    [[[self.scene getContentAwareness] syncContentAwareness] subscribeWithCompletion: ^ (Completion* completion)
+    {
+        
+    }];
+}
+
+- (IBAction) toggleContentAwarenessViewCreation:(id)sender
+{
+    contentAwareViewAddingEnabled = !contentAwareViewAddingEnabled;
+    
+    if(true == contentAwareViewAddingEnabled)
+    {
+        [self.remoteView addGestureRecognizer:tapGestureRecognizer];
+    }
+    else
+    {
+        [self.remoteView removeGestureRecognizer:tapGestureRecognizer];
+        [contentAwareView removeFromSuperview];
+        [[self.scene getContentAwareness] removeWithContent:contentAwareView];
+        [[[self.scene getContentAwareness] syncContentAwareness] subscribeWithCompletion: ^ (Completion* completion)
+        {
+            
+        }];
+    }
 }
 
 @end
