@@ -82,6 +82,8 @@ typedef enum CameraViewDirection {
     [self.scene disconnect];
     self.connectButton.tintColor = UIColor.greenColor;
     [self.muteButton setHidden:true];
+    [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter.fill"]];
+    [self setMuteImage:[UIImage systemImageNamed:@"mic.fill"]];
     [self.contentAwareButton setHidden:true];
     [self.cameraControlView setHidden:true];
 }
@@ -177,6 +179,12 @@ typedef enum CameraViewDirection {
 
 - (void) changeCameraViewTo:(CameraViewDirection) direction
 {
+    if([[self.scene getFeatures] isFeatureFlagEnabled:FeatureFlagUI_SDK_CAMERA_CONTROL])
+    {
+        [self displayAlertWithTitle:@"Camera Control Disabled" andMessage:@"Camera control has been disabled. This can be configured in DDNA Studio."];
+        return;
+    }
+    
     id<Persona> persona = [[self.scene getPersonas] firstObject];
     double scalar = 0;
     switch (direction) {
@@ -245,6 +253,13 @@ typedef enum CameraViewDirection {
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.muteButton setImage: muteImage forState: UIControlStateNormal];
+    });
+}
+
+- (void) setContentAwarenessImage:(UIImage*) contentAwareImage
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.contentAwareButton setImage: contentAwareImage forState: UIControlStateNormal];
     });
 }
 
@@ -353,26 +368,40 @@ typedef enum CameraViewDirection {
     
     [[[self.scene getContentAwareness] syncContentAwareness] subscribeWithCompletion: ^ (Completion* completion)
     {
-        
+        if(nil != completion.error)
+        {
+            NSLog(@"Encountered an error syncing the content awareness: %@", completion.error);
+        }
     }];
 }
 
 - (IBAction) toggleContentAwarenessViewCreation:(id)sender
 {
+    if(false == [[self.scene getFeatures] isFeatureFlagEnabled:FeatureFlagUI_CONTENT_AWARENESS])
+    {
+        [self displayAlertWithTitle:@"Content Awareness Not Supported" andMessage:@"Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio."];
+        return;
+    }
+    
     contentAwareViewAddingEnabled = !contentAwareViewAddingEnabled;
     
     if(true == contentAwareViewAddingEnabled)
     {
         [self.remoteView addGestureRecognizer:tapGestureRecognizer];
+        [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter"]];
     }
     else
     {
+        [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter.fill"]];
         [self.remoteView removeGestureRecognizer:tapGestureRecognizer];
         [contentAwareView removeFromSuperview];
         [[self.scene getContentAwareness] removeWithContent:contentAwareView];
         [[[self.scene getContentAwareness] syncContentAwareness] subscribeWithCompletion: ^ (Completion* completion)
         {
-            
+            if(nil != completion.error)
+            {
+                NSLog(@"Encountered an error syncing the content awareness: %@", completion.error);
+            }
         }];
     }
 }
