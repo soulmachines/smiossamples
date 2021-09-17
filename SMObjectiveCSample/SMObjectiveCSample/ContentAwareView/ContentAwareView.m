@@ -29,7 +29,7 @@
 
 - (NSDictionary<NSString *,id> * _Nonnull)getMetadata
 {
-    return nil;
+    return @{};
 }
 
 @end
