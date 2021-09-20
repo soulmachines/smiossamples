@@ -13,7 +13,7 @@
 
 @import SMDarwin;
 
-@interface ViewController () <ContextDelegate>
+@interface ViewController ()
 
 @end
 
@@ -25,7 +25,6 @@ ContentAwareView *contentAwareView = nil;
 
 @synthesize scene;
 @synthesize isMuted;
-@synthesize context;
 
 static NSString *filename = @"SMObjectiveCSample_Log";
 
@@ -55,7 +54,6 @@ typedef enum CameraViewDirection {
     [contentAwareView setBackgroundColor:UIColor.systemPinkColor];
     
     self.scene = [SceneFactory createWithUserMediaOptions: UserMediaOptionsMicrophoneAndCamera];
-    self.context = [[Context alloc] init];
     
     //Note that the SDK will request permissions normally as the connection occurs, if microphone isn't granted the persona can still be interacted with using the `conversationSend` Scene message.
     [self requestPermissions];
@@ -132,7 +130,6 @@ typedef enum CameraViewDirection {
                 [self.contentAwareButton setHidden:false];
                 [self.cameraControlView setHidden:false];
                 self.connectButton.tintColor = UIColor.redColor;
-                [self.context setScene:self.scene];
             }
         });
     }];
@@ -343,16 +340,6 @@ typedef enum CameraViewDirection {
     }
     
     [controller dismissViewControllerAnimated:true completion:nil];
-}
-
-- (void) hideCard:(nullable id<Card>)card
-{
-    NSLog(@"requested to hide card with model: %@", card);
-}
-
-- (void) showCard:(id<Card> _Nonnull)card
-{
-    NSLog(@"requested to show card with model: %@", card);
 }
 
 - (void) displayViewAtRecognizerLocation: (UITapGestureRecognizer *) recognizer

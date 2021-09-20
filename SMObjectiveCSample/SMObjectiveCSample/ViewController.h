@@ -6,13 +6,11 @@
 #import <UIKit/UIKit.h>
 #import <SMDarwin/SMDarwin.h>
 #import <MessageUI/MessageUI.h>
-#import "Context.h"
 
 @interface ViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
 @property BOOL isMuted;
 @property id<Scene> scene;
-@property Context *context;
 @property (weak, nonatomic) IBOutlet UIView *localView;
 @property (weak, nonatomic) IBOutlet UIView *remoteView;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;

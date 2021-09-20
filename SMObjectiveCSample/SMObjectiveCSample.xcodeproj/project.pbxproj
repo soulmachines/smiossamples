@@ -11,16 +11,12 @@
 		CD1C588F26F2F955005A5409 /* ContentAwareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C588E26F2F955005A5409 /* ContentAwareView.m */; };
 		CD26DE7225AD053A00404D3B /* Enums.m in Sources */ = {isa = PBXBuildFile; fileRef = CD26DE7125AD053A00404D3B /* Enums.m */; };
 		CD26DE7425AD142900404D3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD26DE7325AD142900404D3B /* Localizable.strings */; };
-		CD33AA7D26EACA7D00D3D8F6 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33AA7C26EACA7D00D3D8F6 /* Context.m */; };
 		CD66F62525E36248005F6F7B /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F62425E36248005F6F7B /* Starscream */; };
 		CD66F63125E362C1005F6F7B /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F63025E362C1005F6F7B /* AnyCodable */; };
 		CD83A99125ABF9F3004394E0 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD83A99025ABF9F3004394E0 /* SwitchCell.xib */; };
 		CD83A99425ABFAAA004394E0 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD83A99325ABFAAA004394E0 /* SwitchCell.m */; };
 		CD83A99625ABFE92004394E0 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD83A99525ABFE92004394E0 /* InputCell.xib */; };
 		CD83A99925ABFEBC004394E0 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD83A99825ABFEBC004394E0 /* InputCell.m */; };
-		CDAF9CD526EEEA600042D208 /* ImageCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF9CD426EEEA600042D208 /* ImageCard.m */; };
-		CDAF9CD726EEEA690042D208 /* OptionsCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF9CD626EEEA690042D208 /* OptionsCard.m */; };
-		CDAF9CDB26EEEA830042D208 /* ExternalLinkCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAF9CDA26EEEA830042D208 /* ExternalLinkCard.m */; };
 		CDB4B3D125913D85008364E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3D025913D85008364E4 /* AppDelegate.m */; };
 		CDB4B3D425913D85008364E4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3D325913D85008364E4 /* SceneDelegate.m */; };
 		CDB4B3D725913D85008364E4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3D625913D85008364E4 /* ViewController.m */; };
@@ -40,9 +36,6 @@
 		CD26DE7125AD053A00404D3B /* Enums.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enums.m; sourceTree = "<group>"; };
 		CD26DE7325AD142900404D3B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CD26DE7E25AE458600404D3B /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
-		CD33AA7B26EACA6400D3D8F6 /* Context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Context.h; sourceTree = "<group>"; };
-		CD33AA7C26EACA7D00D3D8F6 /* Context.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Context.m; sourceTree = "<group>"; };
-		CD33AA8026EACF6C00D3D8F6 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		CD76D9C626D5EF5900AE7833 /* SMDarwin.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SMDarwin.xcframework; sourceTree = "<group>"; };
 		CD83A98C2593DB27004394E0 /* SMObjectiveCSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMObjectiveCSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		CD83A99025ABF9F3004394E0 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
@@ -51,12 +44,6 @@
 		CD83A99525ABFE92004394E0 /* InputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
 		CD83A99725ABFEB2004394E0 /* InputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputCell.h; sourceTree = "<group>"; };
 		CD83A99825ABFEBC004394E0 /* InputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputCell.m; sourceTree = "<group>"; };
-		CDAF9CD326EEEA570042D208 /* ImageCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCard.h; sourceTree = "<group>"; };
-		CDAF9CD426EEEA600042D208 /* ImageCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCard.m; sourceTree = "<group>"; };
-		CDAF9CD626EEEA690042D208 /* OptionsCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionsCard.m; sourceTree = "<group>"; };
-		CDAF9CD826EEEA710042D208 /* OptionsCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionsCard.h; sourceTree = "<group>"; };
-		CDAF9CD926EEEA790042D208 /* ExternalLinkCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExternalLinkCard.h; sourceTree = "<group>"; };
-		CDAF9CDA26EEEA830042D208 /* ExternalLinkCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExternalLinkCard.m; sourceTree = "<group>"; };
 		CDB4B3CC25913D85008364E4 /* SMObjectiveCSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMObjectiveCSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B3CF25913D85008364E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CDB4B3D025913D85008364E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -120,20 +107,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		CDAF9CD226EEEA450042D208 /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				CD33AA8026EACF6C00D3D8F6 /* Card.h */,
-				CDAF9CD326EEEA570042D208 /* ImageCard.h */,
-				CDAF9CD426EEEA600042D208 /* ImageCard.m */,
-				CDAF9CD826EEEA710042D208 /* OptionsCard.h */,
-				CDAF9CD626EEEA690042D208 /* OptionsCard.m */,
-				CDAF9CD926EEEA790042D208 /* ExternalLinkCard.h */,
-				CDAF9CDA26EEEA830042D208 /* ExternalLinkCard.m */,
-			);
-			path = Cards;
-			sourceTree = "<group>";
-		};
 		CDB4B3C325913D85008364E4 = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				CD1C588C26F2F93B005A5409 /* ContentAwareView */,
-				CDAF9CD226EEEA450042D208 /* Cards */,
 				CD83A98F25ABF7FE004394E0 /* Cells */,
 				CDB4B3CF25913D85008364E4 /* AppDelegate.h */,
 				CDB4B3D025913D85008364E4 /* AppDelegate.m */,
@@ -167,8 +139,6 @@
 				CDB4B3D625913D85008364E4 /* ViewController.m */,
 				CDB4B3E925913EF4008364E4 /* SettingsViewController.h */,
 				CDB4B3EA25913F01008364E4 /* SettingsViewController.m */,
-				CD33AA7B26EACA6400D3D8F6 /* Context.h */,
-				CD33AA7C26EACA7D00D3D8F6 /* Context.m */,
 				CDB4B3D825913D85008364E4 /* Main.storyboard */,
 				CDB4B3DB25913D88008364E4 /* Assets.xcassets */,
 				CDB4B3DD25913D88008364E4 /* LaunchScreen.storyboard */,
@@ -358,14 +328,10 @@
 				CD26DE7225AD053A00404D3B /* Enums.m in Sources */,
 				CDB4B3D725913D85008364E4 /* ViewController.m in Sources */,
 				CDB4B3D125913D85008364E4 /* AppDelegate.m in Sources */,
-				CDAF9CDB26EEEA830042D208 /* ExternalLinkCard.m in Sources */,
 				CDB4B3EB25913F01008364E4 /* SettingsViewController.m in Sources */,
 				CD83A99925ABFEBC004394E0 /* InputCell.m in Sources */,
 				CD83A99425ABFAAA004394E0 /* SwitchCell.m in Sources */,
 				CDB4B3E225913D88008364E4 /* main.m in Sources */,
-				CDAF9CD526EEEA600042D208 /* ImageCard.m in Sources */,
-				CD33AA7D26EACA7D00D3D8F6 /* Context.m in Sources */,
-				CDAF9CD726EEEA690042D208 /* OptionsCard.m in Sources */,
 				CD1C588F26F2F955005A5409 /* ContentAwareView.m in Sources */,
 				CDB4B3D425913D85008364E4 /* SceneDelegate.m in Sources */,
 			);
