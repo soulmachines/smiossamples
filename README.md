@@ -361,9 +361,9 @@ func checkFeatureFlags() {
 
 ## Content Awareness
 
-If the `Persona` has the Content Awareness `FeatureFlag`  enabled in DDNA Studio, classes inheriting from `Content` can be added to the `Scene.getContentAwareness()`. When executing `ContentAwareness.syncContentAwareness()`, these coordinates will be sent to the `Persona`, and it will glance, gesture, or move out of the way of content as appropriate. 
+If the `Persona` has the Content Awareness `FeatureFlag`  enabled in DDNA Studio, classes inheriting from `Content` can be added to the `Scene.getContentAwareness()`. When executing `ContentAwareness.syncContentAwareness()`, these coordinates will be sent to the `Persona`, and it will glance or move out of the way of content as appropriate. 
 
-Content Awareness tracks three items: the App Window size, the Remote View frame, and an array of `Content`. When syncronising on iOS, the absolute positions of each of these elements are sent through to the `Scene`, which informs the `Persona` where in relation to it's position it is the elements are. 
+Content Awareness tracks three items: the App Window size, the Remote View frame, and an array of `Content`. When synchronizing on iOS, the absolute positions of each of these elements are sent through to the `Scene`, which informs the `Persona` where in relation to it's position the elements are. 
 
 The SDK will automatically call `ContentAwareness.syncContentAwareness()` on orientation change.
 
@@ -450,10 +450,10 @@ Note that positions are absolute, and should be determined based on the root vie
 ======================
 Approx example coordinates
 <1> x1: 100, y1: 100, x2: 150, y2: 150
-- As this content is displayed within the frame of the Remote View, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will glance or gesture at the coordinates.
+- As this content is displayed within the frame of the Remote View, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will gesture at the coordinates.
 
 <2> x1: 300, y1: 200, x2: 350, y1: 250
-- As this content is displayed within the frame of the Remote View, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will glance or gesture at the coordinates.
+- As this content is displayed within the frame of the Remote View, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will gesture at the coordinates.
 
 <3> x1: 200, y1: 400, x2: 250, y2: 450
 - As this coordinate is outside of the Remote View, the Persona will not need to avoid this.
@@ -467,9 +467,9 @@ Approx example coordinates
 ||  |  /     \          |          ||
 ||  |_/_______\_________|          ||
 =====================================
-Approx example coordinates, discussion.
+Approx example coordinates
 <1> x1: 300, y1: 150, x2: 350, y2: 200
-- As this coordinate is possible to overlap the Persona, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will glance or gesture at the coordinates.
+- As this coordinate is possible to overlap the Persona, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will gesture at the coordinates.
 
 <2> x1: 450, y1: 100, x2: 500, y2: 150
 - As this coordinate is outside of the Remote View, the Persona will not need to avoid this.
