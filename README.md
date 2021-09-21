@@ -374,7 +374,7 @@ To add a `Content` item to the `ContentAwareness`, call `Scene.getContentAwarene
 To be added to the `ContentAwareness`, objects need to inherit from `Content`. This ensures that conforming items provide the necessary information for the `Persona` to be aware of their frames within the App. 
 
 This information is as follows:
-- `getId`: A unique identifier for the content. Content with duplicate ID will replace each other. Note that if the ID matches the id provided to `showcards(id)`, the Persona will gesture or glance at the content.
+- `getId`: A unique identifier for the content. Content with duplicate ID will replace each other. Note that if the ID matches the id provided to `showcards(id)`, the Persona will gesture at the content.
 - `getBounds`: A `PointRect` of the coordinates the content exists at. This is made up of  `x1, x2, y1, y2`.
 - `getMetadata`: A dictionary of metadata to associate with the `Content`.
 
