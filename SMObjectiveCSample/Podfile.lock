@@ -1,15 +1,15 @@
 PODS:
   - AnyCodable-FlightSchool (0.4.1)
   - Base64 (1.1.2)
-  - JWT (2.2.0):
+  - JWT (2.0.2):
     - Base64 (~> 1.1.2)
-  - SMDarwin (1.0.3)
+  - SMDarwin (1.1.0)
   - Starscream (4.0.4)
   - WebRTC_iOS (1.0.0)
 
 DEPENDENCIES:
   - AnyCodable-FlightSchool (~> 0.4.0)
-  - JWT (~> 2.2.0)
+  - JWT (~> 2.0.0)
   - SMDarwin
   - Starscream (~> 4.0.0)
   - WebRTC_iOS
@@ -27,11 +27,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AnyCodable-FlightSchool: d27283db6e9feaddb0fa73a25835e5cdf41b3213
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
-  JWT: cf73c0ab0dac762df3de8a3f1164352089d97780
-  SMDarwin: 6ad29c5d1b3cb9ed4adf46de21f459ac4d6fd900
+  JWT: af1172153afe5f2536f57816f3e12cb4a6ac7769
+  SMDarwin: da93ee52329b2b67ff7f85eb47dc6d1f639625ff
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   WebRTC_iOS: 94b24ac6f1fc65df77f6c49570c98e249d183680
 
-PODFILE CHECKSUM: af207e4fd589a4f867061b95b65b938ae9788b0c
+PODFILE CHECKSUM: 482395d818c527058280f106d17c26a459a4f405
 
 COCOAPODS: 1.10.1

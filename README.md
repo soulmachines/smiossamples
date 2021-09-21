@@ -289,6 +289,32 @@ class Sample: SceneMessageListener {
 }
 ```
 
+## Persona Ready Listener
+
+Inheriting from `PersonaReadyListener` and subscribing through the `Scene.add(personaReadyListener:)` will inform the listener when a `Persona` has been registered with the `Scene` and is ready for use. 
+
+```swift
+func setup(scene: Scene) {
+    scene.add(personaReadyListener: self)
+}
+
+func on(personaReady persona: Persona) {
+    //Perform operation/subscribe to Persona.
+}
+```
+
+```objective-c
+- (void) setup:(Scene *)scene 
+{
+    [scene addWithPersonaReadyListener: self];
+}
+
+- (void) onPersonaReady:(id<Persona> _Nonnull)personaReady
+{
+    //Perform operation/subscribe to Persona.
+}
+```
+
 ## Persona API
 
 A `Persona` instance is the API used to interact with Digital Humans. After establishing a successful `Scene` connection and the initial state has been established, the `Persona` instance can be obtained from the `scene?.getPersonas()` API. 
@@ -306,6 +332,147 @@ if let persona = self.scene?.getPersonas().first {
 id<Persona> persona = [[self.scene getPersonas] firstObject];
 NamedCameraAnimationParam *param = [[NamedCameraAnimationParam alloc] initWithCameraName:@"CloseUp" orbitDegX:@10 orbitDegY:@10 panDeg:@2 tiltDeg:@0 time:@1];
 [persona animateToNamedCameraWithOrbitPanWithParam:param];
+```
+
+## Feature Flags
+
+The `Scene` contains a `Features` object populated shortly after the connection has established. This can be checked to determine whether any DDNA Studio level `FeatureFlags` have been enabled on the `Persona`. Supported `FeatureFlags` are found within the SDK documentation.
+
+```swift
+func checkFeatureFlags() {
+    //Determine if Content Awareness is supported. See the Content Awareness section for more information on Content Awareness.
+    let isContentAwarenessSupported = self.scene?.getFeatures().isFeatureFlagEnabled(.UI_CONTENT_AWARENESS) ?? false
+    
+    //Determine if the SDK is controlling the camera. If this is true, the above demonstrated `animateToNamedCameraWithOrbitPan(param:)` will be ignored.
+    let isCameraControlledBySDK = self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) ?? false
+}
+```
+
+```objective-c
+-(void) checkFeatureFlags
+{
+    //Determine if Content Awareness is supported. See the Content Awareness section for more information on Content Awareness.
+    BOOL isContentAwarenessSupported = [[self.scene getFeatures] isFeatureFlagEnabled:FeatureFlagUI_CONTENT_AWARENESS];
+    
+    //Determine if the SDK is controlling the camera. If this is true, the above demonstrated `animateToNamedCameraWithOrbitPan(param:)` will be ignored.
+    BOOL isCameraControlledBySDK = [[self.scene getFeatures] isFeatureFlagEnabled:FeatureFlagUI_SDK_CAMERA_CONTROL];
+}
+```
+
+## Content Awareness
+
+If the `Persona` has the Content Awareness `FeatureFlag`  enabled in DDNA Studio, classes inheriting from `Content` can be added to the `Scene.getContentAwareness()`. When executing `ContentAwareness.syncContentAwareness()`, these coordinates will be sent to the `Persona`, and it will glance or move out of the way of content as appropriate. 
+
+Content Awareness tracks three items: the App Window size, the Remote View frame, and an array of `Content`. When synchronizing on iOS, the absolute positions of each of these elements are sent through to the `Scene`, which informs the `Persona` where in relation to it's position the elements are. 
+
+The SDK will automatically call `ContentAwareness.syncContentAwareness()` on orientation change.
+
+To add a `Content` item to the `ContentAwareness`, call `Scene.getContentAwareness().add(content: content)`. Content can be removed either by reference or by its String id.
+
+### Content Inheritance
+
+To be added to the `ContentAwareness`, objects need to inherit from `Content`. This ensures that conforming items provide the necessary information for the `Persona` to be aware of their frames within the App. 
+
+This information is as follows:
+- `getId`: A unique identifier for the content. Content with duplicate ID will replace each other. Note that if the ID matches the id provided to `showcards(id)`, the Persona will gesture at the content.
+- `getBounds`: A `PointRect` of the coordinates the content exists at. This is made up of  `x1, x2, y1, y2`.
+- `getMetadata`: A dictionary of metadata to associate with the `Content`.
+
+See below for examples.
+
+```swift
+class ExampleContentView: UIView, Content {
+    func getId() -> String {
+        return "UniqueId"
+    }
+
+    func getBounds() -> PointRect {
+        let frame = self.convert(self.frame, to: rootView)
+        return PointRect(x1: Int(frame.origin.x),
+                         y1: Int(frame.origin.y),
+                         x2: Int(frame.origin.x + frame.size.width),
+                         y2: Int(frame.origin.y + frame.size.height))
+    }
+
+    func getMetadata() -> [String : Any] {
+        return [:]
+    }
+}
+```
+
+```objective-c
+
+@interface ExampleContentView : UIView <Content>
+
+@end
+
+@implementation ExampleContentView
+
+- (PointRect * _Nonnull)getBounds
+{
+    CGRect frame = [self convertRect:self.frame toView:rootView];
+    return [[PointRect alloc] initWithX1:frame.origin.x y1:frame.origin.y
+                                      x2:frame.origin.x + frame.size.width
+                                      y2:frame.origin.y + frame.size.height];
+}
+
+- (NSString * _Nonnull)getId
+{
+    return @"UniqueId";
+}
+
+- (NSDictionary<NSString *,id> * _Nonnull)getMetadata
+{
+    return @{};
+}
+
+@end
+```
+
+### Example
+
+```
+Note that positions are absolute, and should be determined based on the root view when getBounds() is called. 
+- '==' and '||' demonstrates the frame of the App Window.
+- '--' and '|' demonstrates the frame of the Remote View.
+- '<n>' demonstrates a Content instance.
+
+======================
+||  --------------  ||
+||  | <1> _      |  ||
+||  |    / \     |  ||
+||  |    \_/  <2>|  ||
+||  |   __^__    |  ||
+||  |  /     \   |  ||
+||  | /       \  |  ||
+||  --------------  ||
+||        <3>       ||
+======================
+Approx example coordinates
+<1> x1: 100, y1: 100, x2: 150, y2: 150
+- As this content is displayed within the frame of the Remote View, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will gesture at the coordinates.
+
+<2> x1: 300, y1: 200, x2: 350, y1: 250
+- As this content is displayed within the frame of the Remote View, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will gesture at the coordinates.
+
+<3> x1: 200, y1: 400, x2: 250, y2: 450
+- As this coordinate is outside of the Remote View, the Persona will not need to avoid this.
+
+=====================================
+||   ____________________          ||
+||  |     _             |   <2>    ||
+||  |    / \            |          ||
+||  |    \_/     <1>    |          ||
+||  |   __^__           |          ||
+||  |  /     \          |          ||
+||  |_/_______\_________|          ||
+=====================================
+Approx example coordinates
+<1> x1: 300, y1: 150, x2: 350, y2: 200
+- As this coordinate is possible to overlap the Persona, if Content Awareness is enabled it will cut to a different position to attempt to prevent the content appearing on top of the Persona. If the Id of the Content is referenced in conversation, the Persona will gesture at the coordinates.
+
+<2> x1: 450, y1: 100, x2: 500, y2: 150
+- As this coordinate is outside of the Remote View, the Persona will not need to avoid this.
 ```
 
 ## Enabling background tasks

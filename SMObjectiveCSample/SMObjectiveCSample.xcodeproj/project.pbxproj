@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16D6C09EA18783AE5A92C590 /* Pods_SMObjectiveCSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9DB92E4E7E400C58801F6C /* Pods_SMObjectiveCSample.framework */; };
+		CD1C588F26F2F955005A5409 /* ContentAwareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C588E26F2F955005A5409 /* ContentAwareView.m */; };
 		CD26DE7225AD053A00404D3B /* Enums.m in Sources */ = {isa = PBXBuildFile; fileRef = CD26DE7125AD053A00404D3B /* Enums.m */; };
 		CD26DE7425AD142900404D3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD26DE7325AD142900404D3B /* Localizable.strings */; };
 		CD66F62525E36248005F6F7B /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F62425E36248005F6F7B /* Starscream */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		05EE1D8DCC0E06F1C44646FA /* Pods-SMObjectiveCSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMObjectiveCSample.release.xcconfig"; path = "Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample.release.xcconfig"; sourceTree = "<group>"; };
 		8B9DB92E4E7E400C58801F6C /* Pods_SMObjectiveCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMObjectiveCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1C588D26F2F94C005A5409 /* ContentAwareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentAwareView.h; sourceTree = "<group>"; };
+		CD1C588E26F2F955005A5409 /* ContentAwareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentAwareView.m; sourceTree = "<group>"; };
 		CD26DE7025AD052E00404D3B /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		CD26DE7125AD053A00404D3B /* Enums.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enums.m; sourceTree = "<group>"; };
 		CD26DE7325AD142900404D3B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CD1C588C26F2F93B005A5409 /* ContentAwareView */ = {
+			isa = PBXGroup;
+			children = (
+				CD1C588D26F2F94C005A5409 /* ContentAwareView.h */,
+				CD1C588E26F2F955005A5409 /* ContentAwareView.m */,
+			);
+			path = ContentAwareView;
+			sourceTree = "<group>";
+		};
 		CD83A98F25ABF7FE004394E0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +129,7 @@
 		CDB4B3CE25913D85008364E4 /* SMObjectiveCSample */ = {
 			isa = PBXGroup;
 			children = (
+				CD1C588C26F2F93B005A5409 /* ContentAwareView */,
 				CD83A98F25ABF7FE004394E0 /* Cells */,
 				CDB4B3CF25913D85008364E4 /* AppDelegate.h */,
 				CDB4B3D025913D85008364E4 /* AppDelegate.m */,
@@ -319,6 +332,7 @@
 				CD83A99925ABFEBC004394E0 /* InputCell.m in Sources */,
 				CD83A99425ABFAAA004394E0 /* SwitchCell.m in Sources */,
 				CDB4B3E225913D88008364E4 /* main.m in Sources */,
+				CD1C588F26F2F955005A5409 /* ContentAwareView.m in Sources */,
 				CDB4B3D425913D85008364E4 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,13 +483,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = RE5P698JQD;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMObjectiveCSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -501,13 +512,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = RE5P698JQD;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMObjectiveCSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
