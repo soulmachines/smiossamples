@@ -7,6 +7,7 @@
 #import <AVKit/AVKit.h>
 #import <SMDarwin/SMDarwin.h>
 #import <JWT/JWT.h>
+#import <JWT/JWTAlgorithmFactory.h>
 #import "Enums.h"
 #import "ContentAwareView.h"
 #import "ViewController.h"
