@@ -376,11 +376,11 @@ typedef enum CameraViewDirection {
     if(true == contentAwareViewAddingEnabled)
     {
         [self.remoteView addGestureRecognizer:tapGestureRecognizer];
-        [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter"]];
+        [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter.fill"]];
     }
     else
     {
-        [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter.fill"]];
+        [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter"]];
         [self.remoteView removeGestureRecognizer:tapGestureRecognizer];
         [contentAwareView removeFromSuperview];
         [[self.scene getContentAwareness] removeWithContent:contentAwareView];

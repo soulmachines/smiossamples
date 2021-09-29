@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A139E342703F7D700DA3EB5 /* ContentAwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A139E332703F7D700DA3EB5 /* ContentAwareView.swift */; };
 		CD044B4F25E85E31009195DE /* SMDarwin in Frameworks */ = {isa = PBXBuildFile; productRef = CD044B4E25E85E31009195DE /* SMDarwin */; };
 		CD66F62825E36253005F6F7B /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F62725E36253005F6F7B /* Starscream */; };
 		CD66F63425E362CD005F6F7B /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F63325E362CD005F6F7B /* AnyCodable */; };
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6A139E332703F7D700DA3EB5 /* ContentAwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAwareView.swift; sourceTree = "<group>"; };
 		CD8E4EFB258AAB4900EE353C /* SMSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8E4EFE258AAB4900EE353C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8E4F00258AAB4900EE353C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A139E322703F7C600DA3EB5 /* ContentAwareView */ = {
+			isa = PBXGroup;
+			children = (
+				6A139E332703F7D700DA3EB5 /* ContentAwareView.swift */,
+			);
+			path = ContentAwareView;
+			sourceTree = "<group>";
+		};
 		CD8E4EF2258AAB4900EE353C = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 		CD8E4EFD258AAB4900EE353C /* SMSwiftSample */ = {
 			isa = PBXGroup;
 			children = (
+				6A139E322703F7C600DA3EB5 /* ContentAwareView */,
 				CDB4B3B3258C3BF9008364E4 /* Cells */,
 				CD8E4EFE258AAB4900EE353C /* AppDelegate.swift */,
 				CD8E4F00258AAB4900EE353C /* SceneDelegate.swift */,
@@ -246,6 +257,7 @@
 				CD8E4F1A258AE5A900EE353C /* SettingsViewController.swift in Sources */,
 				CDB4B3B9258C3C25008364E4 /* InputCell.swift in Sources */,
 				CDB4B3B5258C3C08008364E4 /* SwitchCell.swift in Sources */,
+				6A139E342703F7D700DA3EB5 /* ContentAwareView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +480,7 @@
 			repositoryURL = "git@github.com:soulmachines/SMDarwin.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
+				minimumVersion = 1.1.0;
 			};
 		};
 		CD66F62625E36253005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */ = {
