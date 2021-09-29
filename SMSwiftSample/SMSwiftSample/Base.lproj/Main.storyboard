@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -128,6 +128,17 @@
                                     <action selector="didToggleConnect" destination="BYZ-38-t0r" eventType="touchUpInside" id="UYQ-u4-x2A"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDt-3g-kIu" userLabel="ContentAwareButton">
+                                <rect key="frame" x="52.5" y="802" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KDt-3g-kIu" secondAttribute="height" multiplier="1:1" id="tZV-GF-si7"/>
+                                    <constraint firstAttribute="width" constant="40" id="zX1-dN-bfx"/>
+                                </constraints>
+                                <state key="normal" image="square.split.bottomrightquarter" catalog="system"/>
+                                <connections>
+                                    <action selector="toggleContentAwarenessViewCreation" destination="BYZ-38-t0r" eventType="touchUpInside" id="cHL-Ny-8jf"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hg-9F-Xrz" userLabel="MuteButton">
                                 <rect key="frame" x="321.5" y="802" width="40" height="40"/>
                                 <constraints>
@@ -151,6 +162,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2JF-9F-Bd8" secondAttribute="bottom" id="FbR-6J-A5f"/>
                             <constraint firstItem="2JF-9F-Bd8" firstAttribute="top" secondItem="JqH-wL-nMK" secondAttribute="bottom" id="IWf-Gg-YiL"/>
                             <constraint firstItem="lSz-IO-q4d" firstAttribute="top" secondItem="ZyG-0j-B4D" secondAttribute="bottom" constant="20" id="Iuc-Ap-9Tg"/>
+                            <constraint firstItem="KDt-3g-kIu" firstAttribute="centerY" secondItem="lSz-IO-q4d" secondAttribute="centerY" id="NKb-TE-IXX"/>
                             <constraint firstItem="ZyG-0j-B4D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UTo-5N-Jee"/>
                             <constraint firstItem="JqH-wL-nMK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bML-J4-LJc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lSz-IO-q4d" secondAttribute="bottom" constant="20" id="bhh-V6-3ZC"/>
@@ -162,12 +174,14 @@
                             <constraint firstItem="6Rg-Tn-opG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="jNc-CN-tAq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZyG-0j-B4D" secondAttribute="trailing" id="tAf-ve-hWb"/>
                             <constraint firstItem="4hg-9F-Xrz" firstAttribute="centerY" secondItem="lSz-IO-q4d" secondAttribute="centerY" id="v5p-xS-aRU"/>
+                            <constraint firstItem="KDt-3g-kIu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" multiplier="0.35" id="yH8-8f-z2w"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="NEs-ir-biC" id="OK7-5r-Sbo"/>
                         <outlet property="cameraControlView" destination="ZyG-0j-B4D" id="rWU-Ss-icf"/>
                         <outlet property="connectButton" destination="lSz-IO-q4d" id="6YJ-75-RwU"/>
+                        <outlet property="contentAwareButton" destination="KDt-3g-kIu" id="lw3-fS-9I3"/>
                         <outlet property="localVideoView" destination="6Rg-Tn-opG" id="Odo-6E-rkj"/>
                         <outlet property="muteButton" destination="4hg-9F-Xrz" id="rjs-Wg-QML"/>
                         <outlet property="remoteVideoView" destination="2JF-9F-Bd8" id="ORs-Xb-LDo"/>
@@ -218,6 +232,7 @@
         <image name="mic.fill" catalog="system" width="108" height="128"/>
         <image name="mic.slash.fill" catalog="system" width="108" height="128"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
+        <image name="square.split.bottomrightquarter" catalog="system" width="128" height="114"/>
         <image name="video.fill" catalog="system" width="128" height="82"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
