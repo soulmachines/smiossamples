@@ -7,7 +7,7 @@
 #import <SMDarwin/SMDarwin.h>
 #import <MessageUI/MessageUI.h>
 
-@interface ViewController : UIViewController<MFMailComposeViewControllerDelegate>
+@interface ViewController : UIViewController <MFMailComposeViewControllerDelegate, DisconnectedEventListener>
 
 @property BOOL isMuted;
 @property id<Scene> scene;

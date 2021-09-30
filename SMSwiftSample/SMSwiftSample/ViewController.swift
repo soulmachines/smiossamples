@@ -69,6 +69,8 @@ class ViewController: UIViewController {
         if let remoteView = self.remoteVideoView {
             self.scene?.set(remoteView: remoteView, localView: self.localVideoView)
         }
+
+        self.scene?.add(disconnectedEventListener: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +84,10 @@ class ViewController: UIViewController {
     }
     
     private func disconnect() {
+        if self.isContentAwareViewAddingEnabled == true {
+            toggleContentAwarenessViewCreation()
+        }
+
         self.scene?.disconnect()
         self.connectButton?.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         self.muteButton?.isHidden = true
@@ -368,5 +374,11 @@ extension ViewController: MFMailComposeViewControllerDelegate {
         }
         
         controller.dismiss(animated: true)
+    }
+}
+
+extension ViewController: DisconnectedEventListener {
+    func onDisconnected(reason _: String) {
+        self.disconnect()
     }
 }

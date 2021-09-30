@@ -60,6 +60,8 @@ typedef enum CameraViewDirection {
     [self requestPermissions];
     
     [self.scene setWithRemoteView:self.remoteView localView:self.localView];
+
+    [self.scene addWithDisconnectedEventListener:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,6 +80,11 @@ typedef enum CameraViewDirection {
 
 - (void) disconnect
 {
+    if (true == contentAwareViewAddingEnabled)
+    {
+        [self toggleContentAwarenessViewCreation:nil];
+    }
+
     [self.scene disconnect];
     self.connectButton.tintColor = UIColor.greenColor;
     [self.muteButton setHidden:true];
@@ -392,6 +399,11 @@ typedef enum CameraViewDirection {
             }
         }];
     }
+}
+
+- (void)onDisconnectedWithReason:(NSString*)reason
+{
+    [self disconnect];
 }
 
 @end
