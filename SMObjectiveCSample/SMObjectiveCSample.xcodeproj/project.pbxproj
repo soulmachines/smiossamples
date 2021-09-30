@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD044B5225E85E3D009195DE /* SMDarwin in Frameworks */ = {isa = PBXBuildFile; productRef = CD044B5125E85E3D009195DE /* SMDarwin */; };
+		16D6C09EA18783AE5A92C590 /* Pods_SMObjectiveCSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9DB92E4E7E400C58801F6C /* Pods_SMObjectiveCSample.framework */; };
+		CD1C588F26F2F955005A5409 /* ContentAwareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C588E26F2F955005A5409 /* ContentAwareView.m */; };
 		CD26DE7225AD053A00404D3B /* Enums.m in Sources */ = {isa = PBXBuildFile; fileRef = CD26DE7125AD053A00404D3B /* Enums.m */; };
 		CD26DE7425AD142900404D3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD26DE7325AD142900404D3B /* Localizable.strings */; };
-		CD26DE7F25AE458600404D3B /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD26DE7E25AE458600404D3B /* JWT.framework */; };
-		CD26DE8025AE458600404D3B /* JWT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD26DE7E25AE458600404D3B /* JWT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD66F62525E36248005F6F7B /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F62425E36248005F6F7B /* Starscream */; };
 		CD66F63125E362C1005F6F7B /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = CD66F63025E362C1005F6F7B /* AnyCodable */; };
 		CD83A99125ABF9F3004394E0 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD83A99025ABF9F3004394E0 /* SwitchCell.xib */; };
@@ -28,25 +27,16 @@
 		CDB4B3EB25913F01008364E4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3EA25913F01008364E4 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		CDB4B3F52591491A008364E4 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				CD26DE8025AE458600404D3B /* JWT.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		05EE1D8DCC0E06F1C44646FA /* Pods-SMObjectiveCSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMObjectiveCSample.release.xcconfig"; path = "Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample.release.xcconfig"; sourceTree = "<group>"; };
+		8B9DB92E4E7E400C58801F6C /* Pods_SMObjectiveCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMObjectiveCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1C588D26F2F94C005A5409 /* ContentAwareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentAwareView.h; sourceTree = "<group>"; };
+		CD1C588E26F2F955005A5409 /* ContentAwareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentAwareView.m; sourceTree = "<group>"; };
 		CD26DE7025AD052E00404D3B /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		CD26DE7125AD053A00404D3B /* Enums.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enums.m; sourceTree = "<group>"; };
 		CD26DE7325AD142900404D3B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		CD26DE7E25AE458600404D3B /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
+		CD76D9C626D5EF5900AE7833 /* SMDarwin.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SMDarwin.xcframework; sourceTree = "<group>"; };
 		CD83A98C2593DB27004394E0 /* SMObjectiveCSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMObjectiveCSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		CD83A99025ABF9F3004394E0 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		CD83A99225ABFAA0004394E0 /* SwitchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
@@ -69,6 +59,7 @@
 		CDB4B3E925913EF4008364E4 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		CDB4B3EA25913F01008364E4 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CDB4B3F22591491A008364E4 /* SMDarwin.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SMDarwin.xcframework; path = ../Release/xcframeworks/SMDarwin.xcframework; sourceTree = "<group>"; };
+		F54243D34F596980FE41E79C /* Pods-SMObjectiveCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMObjectiveCSample.debug.xcconfig"; path = "Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,16 +67,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD044B5225E85E3D009195DE /* SMDarwin in Frameworks */,
 				CD66F63125E362C1005F6F7B /* AnyCodable in Frameworks */,
-				CD26DE7F25AE458600404D3B /* JWT.framework in Frameworks */,
 				CD66F62525E36248005F6F7B /* Starscream in Frameworks */,
+				16D6C09EA18783AE5A92C590 /* Pods_SMObjectiveCSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8946E65BD6C81B91775D30D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F54243D34F596980FE41E79C /* Pods-SMObjectiveCSample.debug.xcconfig */,
+				05EE1D8DCC0E06F1C44646FA /* Pods-SMObjectiveCSample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CD1C588C26F2F93B005A5409 /* ContentAwareView */ = {
+			isa = PBXGroup;
+			children = (
+				CD1C588D26F2F94C005A5409 /* ContentAwareView.h */,
+				CD1C588E26F2F955005A5409 /* ContentAwareView.m */,
+			);
+			path = ContentAwareView;
+			sourceTree = "<group>";
+		};
 		CD83A98F25ABF7FE004394E0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +114,7 @@
 				CDB4B3CD25913D85008364E4 /* Products */,
 				CDB4B3F12591491A008364E4 /* Frameworks */,
 				CD83A98C2593DB27004394E0 /* SMObjectiveCSample-Bridging-Header.h */,
+				8946E65BD6C81B91775D30D2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +129,7 @@
 		CDB4B3CE25913D85008364E4 /* SMObjectiveCSample */ = {
 			isa = PBXGroup;
 			children = (
+				CD1C588C26F2F93B005A5409 /* ContentAwareView */,
 				CD83A98F25ABF7FE004394E0 /* Cells */,
 				CDB4B3CF25913D85008364E4 /* AppDelegate.h */,
 				CDB4B3D025913D85008364E4 /* AppDelegate.m */,
@@ -144,8 +154,10 @@
 		CDB4B3F12591491A008364E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD76D9C626D5EF5900AE7833 /* SMDarwin.xcframework */,
 				CD26DE7E25AE458600404D3B /* JWT.framework */,
 				CDB4B3F22591491A008364E4 /* SMDarwin.xcframework */,
+				8B9DB92E4E7E400C58801F6C /* Pods_SMObjectiveCSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,11 +169,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDB4B3E525913D88008364E4 /* Build configuration list for PBXNativeTarget "SMObjectiveCSample" */;
 			buildPhases = (
+				F1B02266670130F1DA789B5B /* [CP] Check Pods Manifest.lock */,
 				CDB4B3C825913D85008364E4 /* Sources */,
 				CDB4B3C925913D85008364E4 /* Frameworks */,
 				CDB4B3CA25913D85008364E4 /* Resources */,
-				CDB4B3F52591491A008364E4 /* Embed Frameworks */,
 				CDA7F70F25B919F000DCE6D0 /* Strip Unused Architectures */,
+				5BF0D6368105874A351C0BB3 /* [CP] Embed Pods Frameworks */,
+				C13D23D1A8D7022FED578753 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,7 +185,6 @@
 			packageProductDependencies = (
 				CD66F62425E36248005F6F7B /* Starscream */,
 				CD66F63025E362C1005F6F7B /* AnyCodable */,
-				CD044B5125E85E3D009195DE /* SMDarwin */,
 			);
 			productName = SMObjectiveCSample;
 			productReference = CDB4B3CC25913D85008364E4 /* SMObjectiveCSample.app */;
@@ -203,7 +216,6 @@
 			packageReferences = (
 				CD66F62325E36248005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */,
 				CD66F62F25E362C1005F6F7B /* XCRemoteSwiftPackageReference "AnyCodable" */,
-				CD044B5025E85E3D009195DE /* XCRemoteSwiftPackageReference "SMDarwin" */,
 				CDA1A7302695549500CB0C85 /* XCRemoteSwiftPackageReference "WebRTC_iOS" */,
 			);
 			productRefGroup = CDB4B3CD25913D85008364E4 /* Products */;
@@ -232,6 +244,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5BF0D6368105874A351C0BB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C13D23D1A8D7022FED578753 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CDA7F70F25B919F000DCE6D0 /* Strip Unused Architectures */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +296,28 @@
 			shellPath = /bin/sh;
 			shellScript = "echo \"Target architectures: $ARCHS\"\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\nFRAMEWORK_TMP_PATH=\"$FRAMEWORK_EXECUTABLE_PATH-tmp\"\n\n# remove simulator's archs if location is not simulator's directory\ncase \"${TARGET_BUILD_DIR}\" in\n*\"iphonesimulator\")\n    echo \"No need to remove archs\"\n    ;;\n*)\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"i386\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"i386\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"i386 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    if $(lipo \"$FRAMEWORK_EXECUTABLE_PATH\" -verify_arch \"x86_64\") ; then\n    lipo -output \"$FRAMEWORK_TMP_PATH\" -remove \"x86_64\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    echo \"x86_64 architecture removed\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_TMP_PATH\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n    fi\n    ;;\nesac\n\necho \"Completed for executable $FRAMEWORK_EXECUTABLE_PATH\"\necho $(lipo -info \"$FRAMEWORK_EXECUTABLE_PATH\")\n\ndone\n";
 		};
+		F1B02266670130F1DA789B5B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SMObjectiveCSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -264,6 +332,7 @@
 				CD83A99925ABFEBC004394E0 /* InputCell.m in Sources */,
 				CD83A99425ABFAAA004394E0 /* SwitchCell.m in Sources */,
 				CDB4B3E225913D88008364E4 /* main.m in Sources */,
+				CD1C588F26F2F955005A5409 /* ContentAwareView.m in Sources */,
 				CDB4B3D425913D85008364E4 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,18 +477,16 @@
 		};
 		CDB4B3E625913D88008364E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F54243D34F596980FE41E79C /* Pods-SMObjectiveCSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = RE5P698JQD;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMObjectiveCSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -439,18 +506,16 @@
 		};
 		CDB4B3E725913D88008364E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05EE1D8DCC0E06F1C44646FA /* Pods-SMObjectiveCSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = RE5P698JQD;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMObjectiveCSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -491,14 +556,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CD044B5025E85E3D009195DE /* XCRemoteSwiftPackageReference "SMDarwin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:soulmachines/SMDarwin.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
-			};
-		};
 		CD66F62325E36248005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daltoniam/Starscream.git";
@@ -526,11 +583,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CD044B5125E85E3D009195DE /* SMDarwin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD044B5025E85E3D009195DE /* XCRemoteSwiftPackageReference "SMDarwin" */;
-			productName = SMDarwin;
-		};
 		CD66F62425E36248005F6F7B /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD66F62325E36248005F6F7B /* XCRemoteSwiftPackageReference "Starscream" */;

@@ -37,6 +37,7 @@ enum CameraViewDirection {
 class ViewController: UIViewController {
     @IBOutlet private weak var connectButton: UIButton?
     @IBOutlet private weak var muteButton: UIButton?
+    @IBOutlet private weak var contentAwareButton: UIButton?
     @IBOutlet private weak var cameraControlView: UIView?
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView?
     
@@ -44,6 +45,9 @@ class ViewController: UIViewController {
     @IBOutlet private weak var remoteVideoView: UIView?
     
     private var isMuted = false
+    private var isContentAwareViewAddingEnabled = false
+    private var contentAwareView = ContentAwareView(frame: .zero)
+    private var tapGestureRecognizer: UITapGestureRecognizer?
     private var scene: Scene?
     
     private let filename = "SMSwiftSample_Log"
@@ -51,9 +55,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.muteButton?.isHidden = true
+        self.contentAwareButton?.isHidden = true
         self.cameraControlView?.isHidden = true
         self.connectButton?.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         let _ = LoggingCenter.loggingCenter.set(logType: .File, filename: filename)
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.displayViewAtRecognizerLocation(_:)))
+        self.contentAwareView.backgroundColor = UIColor.systemPink
         self.scene = SceneFactory.create(userMediaOptions: .MicrophoneAndCamera)
         
         //Note that the SDK will request permissions normally as the connection occurs, if microphone isn't granted the persona can still be interacted with using the `conversationSend` Scene message.
@@ -62,6 +69,8 @@ class ViewController: UIViewController {
         if let remoteView = self.remoteVideoView {
             self.scene?.set(remoteView: remoteView, localView: self.localVideoView)
         }
+
+        self.scene?.add(disconnectedEventListener: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,9 +84,14 @@ class ViewController: UIViewController {
     }
     
     private func disconnect() {
+        if self.isContentAwareViewAddingEnabled == true {
+            toggleContentAwarenessViewCreation()
+        }
+
         self.scene?.disconnect()
         self.connectButton?.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         self.muteButton?.isHidden = true
+        self.contentAwareButton?.isHidden = true
         self.cameraControlView?.isHidden = true
     }
     
@@ -134,6 +148,7 @@ class ViewController: UIViewController {
                 if let _ = completion.result as? SessionInfo {
                     debugPrint("Successful scene connection.")
                     self.muteButton?.isHidden = false
+                    self.contentAwareButton?.isHidden = false
                     self.cameraControlView?.isHidden = false
                     self.connectButton?.tintColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
                 }
@@ -173,7 +188,11 @@ class ViewController: UIViewController {
     }
     
     private func changeCameraView(toDirection direction: CameraViewDirection) {
-        //
+        guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) == true else {
+            self.displayAlert(title: "Content Awareness Not Supported", message: "Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio.")
+            return
+        }
+
         if let persona = self.scene?.getPersonas().first {
             var scalar: Float = 0
             
@@ -239,6 +258,12 @@ class ViewController: UIViewController {
             self.muteButton?.setImage(muteImage, for: .normal)
         }
     }
+
+    private func set(contentAwarenessImage: UIImage?) {
+        DispatchQueue.main.async {
+            self.contentAwareButton?.setImage(contentAwarenessImage, for: .normal)
+        }
+    }
     
     private func requestPermissions() {
         if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined {
@@ -290,6 +315,52 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
+
+    @objc func displayViewAtRecognizerLocation(_ recognizer: UITapGestureRecognizer) {
+        let locationInView = recognizer.location(in: self.remoteVideoView)
+        self.contentAwareView.frame = CGRect(x: locationInView.x - 20, y: locationInView.y - 20, width: 40, height: 40)
+
+        if self.contentAwareView.superview == nil {
+            self.remoteVideoView?.addSubview(self.contentAwareView)
+            self.scene?.getContentAwareness().add(content: self.contentAwareView)
+        }
+
+        self.scene?.getContentAwareness().syncContentAwareness().subscribe(completion: { completion in
+            if let error = completion.error {
+                debugPrint("Encountered an error syncing the content awareness: \(error)")
+            }
+        })
+    }
+
+    @IBAction private func toggleContentAwarenessViewCreation() {
+        guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) == true else {
+            self.displayAlert(title: "Content Awareness Not Supported", message: "Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio.")
+            return
+        }
+
+        self.isContentAwareViewAddingEnabled = !self.isContentAwareViewAddingEnabled
+
+        if self.isContentAwareViewAddingEnabled == true {
+            if let tapGestureRecognizer = self.tapGestureRecognizer {
+                self.remoteVideoView?.addGestureRecognizer(tapGestureRecognizer)
+            }
+            self.set(contentAwarenessImage: UIImage(systemName: "square.split.bottomrightquarter.fill"))
+        } else {
+            if let tapGestureRecognizer = self.tapGestureRecognizer {
+                self.remoteVideoView?.removeGestureRecognizer(tapGestureRecognizer)
+            }
+            self.set(contentAwarenessImage: UIImage(systemName: "square.split.bottomrightquarter"))
+
+            self.contentAwareView.removeFromSuperview()
+
+            self.scene?.getContentAwareness().remove(content: self.contentAwareView)
+            self.scene?.getContentAwareness().syncContentAwareness().subscribe(completion: { completion in
+                if let error = completion.error {
+                    debugPrint("Encountered an error syncing the content awareness: \(error)")
+                }
+            })
+        }
+    }
 }
 
 extension ViewController: MFMailComposeViewControllerDelegate {
@@ -303,5 +374,11 @@ extension ViewController: MFMailComposeViewControllerDelegate {
         }
         
         controller.dismiss(animated: true)
+    }
+}
+
+extension ViewController: DisconnectedEventListener {
+    func onDisconnected(reason _: String) {
+        self.disconnect()
     }
 }
