@@ -91,6 +91,8 @@ class ViewController: UIViewController {
         self.scene?.disconnect()
         self.connectButton?.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         self.muteButton?.isHidden = true
+        self.isMuted = false
+        self.set(muteImage: UIImage(systemName: "mic.fill"))
         self.contentAwareButton?.isHidden = true
         self.cameraControlView?.isHidden = true
     }
@@ -98,10 +100,6 @@ class ViewController: UIViewController {
     private func connect() {
         var jwt = ""
         let serverUrl = UserDefaults.standard.string(forKey: ConfigId.ServerUrl.rawValue) ?? ""
-        
-        if self.isMuted {
-            self.toggleMute()
-        }
         
         if true == UserDefaults.standard.bool(forKey: ConfigId.UseJWT.rawValue) {
             jwt = UserDefaults.standard.string(forKey: ConfigId.JWT.rawValue) ?? ""

@@ -89,6 +89,7 @@ typedef enum CameraViewDirection {
     self.connectButton.tintColor = UIColor.greenColor;
     [self.muteButton setHidden:true];
     [self setContentAwarenessImage:[UIImage systemImageNamed:@"square.split.bottomrightquarter.fill"]];
+    self.isMuted = false;
     [self setMuteImage:[UIImage systemImageNamed:@"mic.fill"]];
     [self.contentAwareButton setHidden:true];
     [self.cameraControlView setHidden:true];
@@ -231,6 +232,7 @@ typedef enum CameraViewDirection {
             
             if (completion.result != nil)
             {
+                NSLog(@"Successfully stopped speech recognizer.");
                 self.isMuted = shouldMute;
                 [self setMuteImage:[UIImage systemImageNamed:@"mic.slash.fill"]];
             }
