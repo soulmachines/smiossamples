@@ -151,19 +151,50 @@
                                     <action selector="didToggleMute" destination="BYZ-38-t0r" eventType="touchUpInside" id="CYq-CM-FCa"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvc-2C-n0Y">
+                                <rect key="frame" x="355" y="139" width="51" height="31"/>
+                                <connections>
+                                    <action selector="didToggleCamera" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fee-wt-yTr"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqA-5c-CJs">
+                                <rect key="frame" x="285.5" y="144" width="59.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rq-Dy-dxm">
+                                <rect key="frame" x="355" y="98" width="51" height="31"/>
+                                <connections>
+                                    <action selector="didToggleMicrophone" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Td-Q8-9tg"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0W4-MM-gn0">
+                                <rect key="frame" x="254" y="103" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0W4-MM-gn0" firstAttribute="centerY" secondItem="7rq-Dy-dxm" secondAttribute="centerY" id="0Us-YP-30A"/>
                             <constraint firstItem="NEs-ir-biC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4ha-nd-k4J"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7rq-Dy-dxm" secondAttribute="trailing" constant="10" id="6M6-2M-sEd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JqH-wL-nMK" secondAttribute="trailing" id="981-Oi-MSN"/>
                             <constraint firstItem="NEs-ir-biC" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9ic-ca-jVS"/>
                             <constraint firstItem="2JF-9F-Bd8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ARQ-Jd-ZcU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2JF-9F-Bd8" secondAttribute="bottom" id="FbR-6J-A5f"/>
                             <constraint firstItem="2JF-9F-Bd8" firstAttribute="top" secondItem="JqH-wL-nMK" secondAttribute="bottom" id="IWf-Gg-YiL"/>
                             <constraint firstItem="lSz-IO-q4d" firstAttribute="top" secondItem="ZyG-0j-B4D" secondAttribute="bottom" constant="20" id="Iuc-Ap-9Tg"/>
+                            <constraint firstItem="rvc-2C-n0Y" firstAttribute="leading" secondItem="fqA-5c-CJs" secondAttribute="trailing" constant="10" id="KlJ-oI-VnM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rvc-2C-n0Y" secondAttribute="trailing" constant="10" id="N5N-8g-Sf7"/>
                             <constraint firstItem="KDt-3g-kIu" firstAttribute="centerY" secondItem="lSz-IO-q4d" secondAttribute="centerY" id="NKb-TE-IXX"/>
+                            <constraint firstItem="7rq-Dy-dxm" firstAttribute="leading" secondItem="0W4-MM-gn0" secondAttribute="trailing" constant="10" id="Ohi-Qo-Rvy"/>
                             <constraint firstItem="ZyG-0j-B4D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UTo-5N-Jee"/>
+                            <constraint firstItem="rvc-2C-n0Y" firstAttribute="top" secondItem="7rq-Dy-dxm" secondAttribute="bottom" constant="10" id="Vms-wa-c9v"/>
+                            <constraint firstItem="0W4-MM-gn0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="VpO-1p-rJ5"/>
                             <constraint firstItem="JqH-wL-nMK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bML-J4-LJc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lSz-IO-q4d" secondAttribute="bottom" constant="20" id="bhh-V6-3ZC"/>
                             <constraint firstItem="6Rg-Tn-opG" firstAttribute="top" secondItem="JqH-wL-nMK" secondAttribute="bottom" constant="50" id="dNy-Sp-wGH"/>
@@ -172,6 +203,9 @@
                             <constraint firstItem="lSz-IO-q4d" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="isF-O8-bnF"/>
                             <constraint firstItem="JqH-wL-nMK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jFt-pQ-rnw"/>
                             <constraint firstItem="6Rg-Tn-opG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="jNc-CN-tAq"/>
+                            <constraint firstItem="fqA-5c-CJs" firstAttribute="centerY" secondItem="rvc-2C-n0Y" secondAttribute="centerY" id="lP7-ZF-i9O"/>
+                            <constraint firstItem="fqA-5c-CJs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="neD-4A-fgl"/>
+                            <constraint firstItem="7rq-Dy-dxm" firstAttribute="top" secondItem="JqH-wL-nMK" secondAttribute="bottom" constant="10" id="sII-Xt-PnW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZyG-0j-B4D" secondAttribute="trailing" id="tAf-ve-hWb"/>
                             <constraint firstItem="4hg-9F-Xrz" firstAttribute="centerY" secondItem="lSz-IO-q4d" secondAttribute="centerY" id="v5p-xS-aRU"/>
                             <constraint firstItem="KDt-3g-kIu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" multiplier="0.35" id="yH8-8f-z2w"/>
@@ -180,9 +214,11 @@
                     <connections>
                         <outlet property="activityIndicator" destination="NEs-ir-biC" id="OK7-5r-Sbo"/>
                         <outlet property="cameraControlView" destination="ZyG-0j-B4D" id="rWU-Ss-icf"/>
+                        <outlet property="cameraSwitch" destination="rvc-2C-n0Y" id="O9g-4b-5AB"/>
                         <outlet property="connectButton" destination="lSz-IO-q4d" id="6YJ-75-RwU"/>
                         <outlet property="contentAwareButton" destination="KDt-3g-kIu" id="lw3-fS-9I3"/>
                         <outlet property="localVideoView" destination="6Rg-Tn-opG" id="Odo-6E-rkj"/>
+                        <outlet property="microphoneSwitch" destination="7rq-Dy-dxm" id="uPv-QB-YtO"/>
                         <outlet property="muteButton" destination="4hg-9F-Xrz" id="rjs-Wg-QML"/>
                         <outlet property="remoteVideoView" destination="2JF-9F-Bd8" id="ORs-Xb-LDo"/>
                     </connections>
