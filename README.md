@@ -22,8 +22,9 @@ foo@bar dir % pod install
 
 ## Minimum requirements
 
-SMDarwin supports iOS 11 and above.
+SMDarwin supports iOS 12 and above.
 SMDarwin 1.0.4 and above depend on [WebRTC_iOS](https://github.com/soulmachines/WebRTC_iOS).
+SMDarwin 1.2.0 requires the aforementioned library at release 1.1.0 or greater.
 
 ## Importing the library
 
@@ -175,6 +176,56 @@ self.scene?.connect(url: serverUrl, userText: nil, accessToken: jwt, retryOption
         NSLog(@"Successful scene connection.");
     }
 }];
+```
+
+### Updating User Media Options
+
+The `Scene` supports updating the `UserMediaOptions` either prior to the call being started, or while the call is in progress. This includes starting without any input and upgrading the call on the fly which is handled within the SDK itself. Note that the SDK will only request permissions when required based on the UserMediaOptions.
+
+Permission map for each UserMediaOptions:
+```
+.MicrophoneAndCamera
+- Video permission requested (AVMediaTypeVideo).
+- Audio permission requested (AVMediaTypeAudio).
+
+.Microphone
+- Audio permission requested (AVMediaTypeAudio).
+
+.Camera
+- Video permission requested (AVMediaTypeVideo).
+
+.None
+- No permissions requested.
+```
+
+To update the `UserMediaOptions`, call the `update(userMediaOptions:)` API on the `Scene`. This will return a `Completion.result` value of `true` if the call succeeds, or a more detailed error message. See examples of implementation below.
+
+```swift
+private func update(userMediaOptions: UserMediaOptions) {
+    self.scene?.update(userMediaOptions: userMediaOptions).subscribe(completion: { completion in
+        if let error = completion.error {
+            //Operation failed, see error for more information.
+        } else {
+            //Operation succeeded, see result for more information.
+        }
+    })
+}
+```
+
+```objective-c
+- (void) updateUserMediaOptions:(UserMediaOptions)userMediaOptions
+{
+    [[self.scene updateWithUserMediaOptions:userMediaOptions] subscribeWithCompletion:^ (Completion* completion) {
+        if (nil != completion.error)
+        {
+            //Operation failed, see error for more information.
+        }
+        else
+        {
+            //Operation succeeded, see result for more information.
+        }
+    }];
+}
 ```
 
 ## Register event listeners on the Scene
