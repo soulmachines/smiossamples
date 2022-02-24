@@ -7,7 +7,6 @@ import UIKit
 import SMDarwin
 import SwiftJWT
 import MessageUI
-import AVKit
 
 //Claim for SwiftJWT
 struct SMClaim: Claims {
@@ -44,11 +43,15 @@ class ViewController: UIViewController {
     @IBOutlet private weak var localVideoView: UIView?
     @IBOutlet private weak var remoteVideoView: UIView?
     
+    @IBOutlet private weak var microphoneSwitch: UISwitch?
+    @IBOutlet private weak var cameraSwitch: UISwitch?
+    
     private var isMuted = false
     private var isContentAwareViewAddingEnabled = false
     private var contentAwareView = ContentAwareView(frame: .zero)
     private var tapGestureRecognizer: UITapGestureRecognizer?
     private var scene: Scene?
+    private var currentUserMediaOptions: UserMediaOptions = .None
     
     private let filename = "SMSwiftSample_Log"
     
@@ -61,10 +64,10 @@ class ViewController: UIViewController {
         let _ = LoggingCenter.loggingCenter.set(logType: .File, filename: filename)
         self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.displayViewAtRecognizerLocation(_:)))
         self.contentAwareView.backgroundColor = UIColor.systemPink
-        self.scene = SceneFactory.create(userMediaOptions: .MicrophoneAndCamera)
-        
-        //Note that the SDK will request permissions normally as the connection occurs, if microphone isn't granted the persona can still be interacted with using the `conversationSend` Scene message.
-        self.requestPermissions()
+        self.scene = SceneFactory.create(userMediaOptions: self.currentUserMediaOptions)
+        //If the below toggles are unlinked from the above variable (passing through a hardcoded value for example), their state will no longer be valid. Updating the options at declaration will function correctly.
+        self.microphoneSwitch?.isOn = self.currentUserMediaOptions.hasAudio
+        self.cameraSwitch?.isOn = self.currentUserMediaOptions.hasVideo
         
         if let remoteView = self.remoteVideoView {
             self.scene?.set(remoteView: remoteView, localView: self.localVideoView)
@@ -158,15 +161,32 @@ class ViewController: UIViewController {
         if self.scene?.getSessionInfo() != nil {
             self.disconnect()
         } else {
-            if AVCaptureDevice.authorizationStatus(for: .audio) != .authorized {
-                self.displayAlert(title: "Missing Microphone Permission", message: "This App requires microphone access to connect. Please enable the Microphone permission in the Settings App.")
-                return
-            }
-            
             self.connectButton?.isEnabled = false
             self.activityIndicator?.startAnimating()
             self.connect()
         }
+    }
+    
+    private func update(userMediaOptions: UserMediaOptions) {
+        self.scene?.update(userMediaOptions: userMediaOptions).subscribe(completion: { completion in
+            if let error = completion.error {
+                DispatchQueue.main.async {
+                    self.displayAlert(title: "Media Change Error", message: "Error updating user media options: \(error)")
+                    self.cameraSwitch?.isOn = self.currentUserMediaOptions.hasVideo
+                    self.microphoneSwitch?.isOn = self.currentUserMediaOptions.hasAudio
+                }
+            } else {
+                self.currentUserMediaOptions = userMediaOptions
+            }
+        })
+    }
+    
+    @IBAction private func didToggleMicrophone() {
+        self.update(userMediaOptions: UserMediaOptions.userMedia(hasAudio: !self.currentUserMediaOptions.hasAudio, hasVideo: self.currentUserMediaOptions.hasVideo))
+    }
+    
+    @IBAction private func didToggleCamera() {
+        self.update(userMediaOptions: UserMediaOptions.userMedia(hasAudio: self.currentUserMediaOptions.hasAudio, hasVideo: !self.currentUserMediaOptions.hasVideo))
     }
 
     @IBAction private func didToggleMute() {
@@ -260,19 +280,6 @@ class ViewController: UIViewController {
     private func set(contentAwarenessImage: UIImage?) {
         DispatchQueue.main.async {
             self.contentAwareButton?.setImage(contentAwarenessImage, for: .normal)
-        }
-    }
-    
-    private func requestPermissions() {
-        if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined {
-            AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
-                debugPrint("Video authorization granted: \(granted.description)")
-            })
-        }
-        if AVCaptureDevice.authorizationStatus(for: .audio) == .notDetermined {
-            AVCaptureDevice.requestAccess(for: .audio, completionHandler: { granted in
-                debugPrint("Audio authorization granted: \(granted.description)")
-            })
         }
     }
     

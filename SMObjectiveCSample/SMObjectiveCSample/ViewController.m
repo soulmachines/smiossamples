@@ -4,7 +4,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVKit/AVKit.h>
 #import <SMDarwin/SMDarwin.h>
 #import <JWT/JWT.h>
 #import <JWT/JWTAlgorithmFactory.h>
@@ -23,6 +22,7 @@
 BOOL contentAwareViewAddingEnabled = FALSE;
 UITapGestureRecognizer *tapGestureRecognizer = nil;
 ContentAwareView *contentAwareView = nil;
+UserMediaOptions currentUserMediaOptions = UserMediaOptionsNone;
 
 @synthesize scene;
 @synthesize isMuted;
@@ -54,10 +54,9 @@ typedef enum CameraViewDirection {
     contentAwareView = [[ContentAwareView alloc] init];
     [contentAwareView setBackgroundColor:UIColor.systemPinkColor];
     
-    self.scene = [SceneFactory createWithUserMediaOptions: UserMediaOptionsMicrophoneAndCamera];
-    
-    //Note that the SDK will request permissions normally as the connection occurs, if microphone isn't granted the persona can still be interacted with using the `conversationSend` Scene message.
-    [self requestPermissions];
+    self.scene = [SceneFactory createWithUserMediaOptions: currentUserMediaOptions];
+    [self.cameraSwitch setOn:[UserMediaOptionsHelpers optionHasVideo:currentUserMediaOptions]];
+    [self.microphoneSwitch setOn:[UserMediaOptionsHelpers optionHasAudio:currentUserMediaOptions]];
     
     [self.scene setWithRemoteView:self.remoteView localView:self.localView];
 
@@ -152,11 +151,6 @@ typedef enum CameraViewDirection {
     }
     else
     {
-        if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] != AVAuthorizationStatusAuthorized)
-        {
-            [self displayAlertWithTitle:@"Missing Microphone Permission" andMessage:@"This App requires microphone access to connect. Please enable the Microphone permission in the Settings App."];
-            return;
-        }
         [self.connectButton setEnabled:false];
         [self.activityIndicator startAnimating];
         [self connect];
@@ -181,6 +175,40 @@ typedef enum CameraViewDirection {
 - (IBAction) viewFromCenter:(id)sender
 {
     [self changeCameraViewTo:Center];
+}
+
+- (IBAction) didToggleMicrophone:(id)sender
+{
+    BOOL hasAudio = [UserMediaOptionsHelpers optionHasAudio:currentUserMediaOptions];
+    BOOL hasVideo = [UserMediaOptionsHelpers optionHasVideo:currentUserMediaOptions];
+    UserMediaOptions newMedia = [UserMediaOptionsHelpers userMediaWithAudio:!hasAudio andVideo:hasVideo];
+    [self updateUserMediaOptions:newMedia];
+}
+
+- (IBAction) didToggleCamera:(id)sender
+{
+    BOOL hasAudio = [UserMediaOptionsHelpers optionHasAudio:currentUserMediaOptions];
+    BOOL hasVideo = [UserMediaOptionsHelpers optionHasVideo:currentUserMediaOptions];
+    UserMediaOptions newMedia = [UserMediaOptionsHelpers userMediaWithAudio:hasAudio andVideo:!hasVideo];
+    [self updateUserMediaOptions:newMedia];
+}
+
+- (void) updateUserMediaOptions:(UserMediaOptions)userMediaOptions
+{
+    [[self.scene updateWithUserMediaOptions:userMediaOptions] subscribeWithCompletion:^ (Completion* completion) {
+        if (nil != completion.error)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self displayAlertWithTitle:@"Media Change Error" andMessage:[NSString stringWithFormat:@"Error updating user media options: %@", completion.error]];
+                [self.cameraSwitch setOn:[UserMediaOptionsHelpers optionHasVideo:currentUserMediaOptions]];
+                [self.microphoneSwitch setOn:[UserMediaOptionsHelpers optionHasAudio:currentUserMediaOptions]];
+            });
+        }
+        else
+        {
+            currentUserMediaOptions = userMediaOptions;
+        }
+    }];
 }
 
 - (void) changeCameraViewTo:(CameraViewDirection) direction
@@ -268,22 +296,6 @@ typedef enum CameraViewDirection {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.contentAwareButton setImage: contentAwareImage forState: UIControlStateNormal];
     });
-}
-
-- (void) requestPermissions
-{
-    if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusNotDetermined)
-    {
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            NSLog(@"Video authorization granted: %@", granted ? @"true" : @"false");
-        }];
-    }
-    if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusNotDetermined)
-    {
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
-            NSLog(@"Audio authorization granted: %@", granted ? @"true" : @"false");
-        }];
-    }
 }
 
 - (IBAction) sendLogs

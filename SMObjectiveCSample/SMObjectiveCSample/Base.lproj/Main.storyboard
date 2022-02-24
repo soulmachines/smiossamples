@@ -151,6 +151,30 @@
                                     <action selector="didToggleMute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AMs-Vb-28r"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X3w-PG-dO0">
+                                <rect key="frame" x="355" y="98" width="51" height="31"/>
+                                <connections>
+                                    <action selector="didToggleMicrophone:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l7h-Ys-Uxp"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPv-38-Vvp">
+                                <rect key="frame" x="355" y="139" width="51" height="31"/>
+                                <connections>
+                                    <action selector="didToggleCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s8b-Ax-Ej2"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microphone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PW-qm-Zs7">
+                                <rect key="frame" x="254" y="103" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOh-zd-xjF">
+                                <rect key="frame" x="285.5" y="144" width="59.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MQW-ek-fMK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -158,6 +182,7 @@
                             <constraint firstItem="kBg-10-OtX" firstAttribute="leading" secondItem="MQW-ek-fMK" secondAttribute="leading" constant="50" id="295-HN-UUx"/>
                             <constraint firstItem="Q5Q-PW-YSv" firstAttribute="leading" secondItem="MQW-ek-fMK" secondAttribute="leading" id="3g7-gj-Hyo"/>
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="bottom" secondItem="6c0-lh-gZP" secondAttribute="bottom" id="8Pf-Ws-y0J"/>
+                            <constraint firstItem="X3w-PG-dO0" firstAttribute="top" secondItem="Bbr-Fw-QI7" secondAttribute="bottom" constant="10" id="9H1-3M-mq8"/>
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="trailing" secondItem="Q5Q-PW-YSv" secondAttribute="trailing" id="Bnb-eH-MAI"/>
                             <constraint firstItem="XiB-mA-vch" firstAttribute="centerY" secondItem="e25-sv-MqC" secondAttribute="centerY" id="G0H-SS-ZGM"/>
                             <constraint firstItem="Q5Q-PW-YSv" firstAttribute="height" secondItem="e25-sv-MqC" secondAttribute="height" id="J0A-dO-sGe"/>
@@ -165,25 +190,36 @@
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="trailing" secondItem="6c0-lh-gZP" secondAttribute="trailing" id="O38-YU-QAt"/>
                             <constraint firstItem="6c0-lh-gZP" firstAttribute="top" secondItem="Bbr-Fw-QI7" secondAttribute="bottom" id="Q2U-TU-EB2"/>
                             <constraint firstItem="XiB-mA-vch" firstAttribute="centerX" secondItem="MQW-ek-fMK" secondAttribute="centerX" multiplier="1.65" id="Qox-p1-HTD"/>
+                            <constraint firstItem="X3w-PG-dO0" firstAttribute="leading" secondItem="0PW-qm-Zs7" secondAttribute="trailing" constant="10" id="SgY-Zb-6k0"/>
                             <constraint firstItem="e25-sv-MqC" firstAttribute="centerX" secondItem="MQW-ek-fMK" secondAttribute="centerX" id="UQy-Lb-a74"/>
+                            <constraint firstItem="KOh-zd-xjF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MQW-ek-fMK" secondAttribute="leading" constant="10" id="Wep-67-6ew"/>
                             <constraint firstItem="qZE-xP-Xls" firstAttribute="centerX" secondItem="MQW-ek-fMK" secondAttribute="centerX" multiplier="0.35" id="Yy0-BM-tLt"/>
+                            <constraint firstItem="0PW-qm-Zs7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MQW-ek-fMK" secondAttribute="leading" constant="10" id="ZIM-wH-0jZ"/>
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="bottom" secondItem="e25-sv-MqC" secondAttribute="bottom" constant="20" id="aI8-Sb-fZi"/>
                             <constraint firstItem="MQW-ek-fMK" firstAttribute="trailing" secondItem="Bbr-Fw-QI7" secondAttribute="trailing" id="awD-sG-3bP"/>
+                            <constraint firstItem="MQW-ek-fMK" firstAttribute="trailing" secondItem="X3w-PG-dO0" secondAttribute="trailing" constant="10" id="dUh-vn-au6"/>
                             <constraint firstItem="kBg-10-OtX" firstAttribute="top" secondItem="Bbr-Fw-QI7" secondAttribute="bottom" constant="50" id="fTV-Xd-Php"/>
                             <constraint firstItem="Bbr-Fw-QI7" firstAttribute="top" secondItem="MQW-ek-fMK" secondAttribute="top" id="fj7-jF-4TI"/>
                             <constraint firstItem="Bbr-Fw-QI7" firstAttribute="leading" secondItem="MQW-ek-fMK" secondAttribute="leading" id="gQz-Zj-Fsy"/>
                             <constraint firstItem="e25-sv-MqC" firstAttribute="top" secondItem="Q5Q-PW-YSv" secondAttribute="bottom" constant="20" id="haW-hZ-vfF"/>
                             <constraint firstItem="qZE-xP-Xls" firstAttribute="centerY" secondItem="e25-sv-MqC" secondAttribute="centerY" id="ioP-LI-682"/>
                             <constraint firstItem="6c0-lh-gZP" firstAttribute="leading" secondItem="MQW-ek-fMK" secondAttribute="leading" id="nnR-mx-phw"/>
+                            <constraint firstItem="0PW-qm-Zs7" firstAttribute="centerY" secondItem="X3w-PG-dO0" secondAttribute="centerY" id="peJ-ws-nt9"/>
+                            <constraint firstItem="cPv-38-Vvp" firstAttribute="top" secondItem="X3w-PG-dO0" secondAttribute="bottom" constant="10" id="qO4-im-wey"/>
                             <constraint firstItem="qld-5U-4dT" firstAttribute="centerY" secondItem="MQW-ek-fMK" secondAttribute="centerY" id="rId-Hg-GGE"/>
+                            <constraint firstItem="MQW-ek-fMK" firstAttribute="trailing" secondItem="cPv-38-Vvp" secondAttribute="trailing" constant="10" id="rVV-KS-HS2"/>
+                            <constraint firstItem="cPv-38-Vvp" firstAttribute="leading" secondItem="KOh-zd-xjF" secondAttribute="trailing" constant="10" id="vkS-q5-Ajp"/>
+                            <constraint firstItem="KOh-zd-xjF" firstAttribute="centerY" secondItem="cPv-38-Vvp" secondAttribute="centerY" id="zcL-AL-Csz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="qld-5U-4dT" id="9bO-Dp-dmt"/>
                         <outlet property="cameraControlView" destination="Q5Q-PW-YSv" id="aOZ-Sz-8rz"/>
+                        <outlet property="cameraSwitch" destination="cPv-38-Vvp" id="Vkc-sR-Tga"/>
                         <outlet property="connectButton" destination="e25-sv-MqC" id="DnH-jx-gVC"/>
                         <outlet property="contentAwareButton" destination="qZE-xP-Xls" id="6Lw-vO-H7q"/>
                         <outlet property="localView" destination="kBg-10-OtX" id="97L-Lx-WCC"/>
+                        <outlet property="microphoneSwitch" destination="X3w-PG-dO0" id="Pym-vW-6Gv"/>
                         <outlet property="muteButton" destination="XiB-mA-vch" id="WTT-0Z-vj7"/>
                         <outlet property="remoteView" destination="6c0-lh-gZP" id="pVd-mW-DjV"/>
                     </connections>

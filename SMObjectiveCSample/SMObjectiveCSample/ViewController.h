@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *contentAwareButton;
 @property (weak, nonatomic) IBOutlet UIView *cameraControlView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UISwitch *microphoneSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *cameraSwitch;
 
 @end
 
