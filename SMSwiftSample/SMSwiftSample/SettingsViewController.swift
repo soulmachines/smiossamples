@@ -11,9 +11,9 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView?
     
-    let settingHeaders: [HeaderId] = [.ServerConnection, .AccessToken]
-    let firstSettingsList: [ConfigId] = [.ServerUrl]
-    let secondSettingsList: [ConfigId] = [.KeyName, .PrivateKey, .EnableOrchestration, .OrchestrationUrl, .UseJWT, .JWT]
+    let settingHeaders: [HeaderId] = [.APIKey, .ServerConnectionAccessToken]
+    let firstSettingsList: [ConfigId] = [.APIKeyDescription, .UseUrlAndToken]
+    let secondSettingsList: [ConfigId] = [.ServerUrl, .KeyName, .PrivateKey, .EnableOrchestration, .OrchestrationUrl, .UseJWT, .JWT]
     
     override func viewDidLoad() {
         self.tableView?.register(UINib(nibName: SwitchCell.identifier, bundle: nil), forCellReuseIdentifier: SwitchCell.identifier)
@@ -49,27 +49,28 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let setting = self.firstSettingsList[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: InputCell.identifier) as? InputCell {
+            return self.retrieveCell(fromSetting: setting, forTable: tableView)
+        } else {
+            let setting = self.secondSettingsList[indexPath.row]
+            return self.retrieveCell(fromSetting: setting, forTable: tableView)
+        }
+    }
+    
+    private func retrieveCell(fromSetting setting: ConfigId, forTable tableView: UITableView) -> UITableViewCell {
+        if setting.isSwitch() {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier) as? SwitchCell {
                 cell.set(configId: setting)
                 cell.selectionStyle = .none
                 return cell
             }
         } else {
-            let setting = self.secondSettingsList[indexPath.row]
-            if setting.isSwitch() {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier) as? SwitchCell {
-                    cell.set(configId: setting)
-                    cell.selectionStyle = .none
-                    return cell
-                }
-            } else {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: InputCell.identifier) as? InputCell {
-                    cell.set(configId: setting)
-                    cell.selectionStyle = .none
-                    return cell
-                }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: InputCell.identifier) as? InputCell {
+                cell.set(configId: setting)
+                cell.selectionStyle = .none
+                return cell
             }
         }
+        
         debugPrint("Returning basic cell")
         return UITableViewCell()
     }
@@ -78,7 +79,9 @@ extension SettingsViewController: UITableViewDataSource {
         var height = SettingsViewController.switchHeight
         
         if indexPath.section == 0 {
-            height = SettingsViewController.inputHeight
+            if false == self.firstSettingsList[indexPath.row].isSwitch() {
+                height = SettingsViewController.inputHeight
+            }
         } else {
             if false == self.secondSettingsList[indexPath.row].isSwitch() {
                 height = SettingsViewController.inputHeight

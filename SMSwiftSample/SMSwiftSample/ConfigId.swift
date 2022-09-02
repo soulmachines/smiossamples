@@ -9,6 +9,7 @@ enum ConfigId: String {
     //Switches
     case EnableOrchestration = "EnableOrchestration"
     case UseJWT = "UseJWT"
+    case UseUrlAndToken = "UseURLAndToken"
     
     //Inputs
     case ServerUrl = "ServerUrl"
@@ -16,9 +17,10 @@ enum ConfigId: String {
     case PrivateKey = "PrivateKey"
     case OrchestrationUrl = "OrchestrationUrl"
     case JWT = "JWT"
+    case APIKeyDescription = "APIKeyDescription"
     
     func isSwitch() -> Bool {
-        if self == .EnableOrchestration || self == .UseJWT {
+        if self == .EnableOrchestration || self == .UseJWT || self == .UseUrlAndToken {
             return true
         }
         
@@ -27,6 +29,6 @@ enum ConfigId: String {
 }
 
 enum HeaderId: String {
-    case ServerConnection = "ServerConnection"
-    case AccessToken = "AccessToken"
+    case APIKey = "APIKey"
+    case ServerConnectionAccessToken = "ServerConnection"
 }
