@@ -9,7 +9,7 @@ enum ConfigId: String {
     //Switches
     case EnableOrchestration = "EnableOrchestration"
     case UseJWT = "UseJWT"
-    case UseUrlAndToken = "UseURLAndToken"
+    case UseUrlAndToken = "UseUrlAndToken"
     
     //Inputs
     case ServerUrl = "ServerUrl"
@@ -30,5 +30,5 @@ enum ConfigId: String {
 
 enum HeaderId: String {
     case APIKey = "APIKey"
-    case ServerConnectionAccessToken = "ServerConnection"
+    case ServerConnectionAccessToken = "ServerConnectionAccessToken"
 }

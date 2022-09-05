@@ -27,4 +27,4 @@
 
 "APIKeyDescription" = "API Key generated using DDNA Studio.";
 
-"UseUrlAndToken" = "Use URL and Access Token connect method.";
+"UseUrlAndToken" = "Use URL and Access Token to connect.";
