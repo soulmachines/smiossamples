@@ -111,6 +111,8 @@ class ViewController: UIViewController {
     private func connectWithAPIKey() {
         guard let apiKey = UserDefaults.standard.string(forKey: ConfigId.APIKeyDescription.rawValue), false == apiKey.isEmpty else {
             debugPrint("Unable to retrieve API Key from settings.")
+            self.connectButton?.isEnabled = true
+            self.activityIndicator?.stopAnimating()
             return
         }
         
@@ -160,6 +162,8 @@ class ViewController: UIViewController {
             
             guard let privateKeyData = privateKey.data(using: .utf8) else {
                 debugPrint("Unable to parse private key to data.")
+                self.connectButton?.isEnabled = true
+                self.activityIndicator?.stopAnimating()
                 return
             }
             
