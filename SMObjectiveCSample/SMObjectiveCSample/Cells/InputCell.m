@@ -20,11 +20,14 @@
     return NSStringFromClass(InputCell.self);
 }
 
-- (void)prepareForReuse
+- (void) prepareForReuse
 {
     [super prepareForReuse];
     [self.inputField setText:@""];
     [self.inputLabel setText:@""];
+    
+    [self setUserInteractionEnabled:true];
+    [self.inputLabel setTextColor:UIColor.blackColor];
 }
 
 - (void) setConfigId:(ConfigId) configId
@@ -37,12 +40,18 @@
     [self.inputField setText:textContent];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void) textFieldDidEndEditing:(UITextField *)textField
 {
     NSString *textContent = self.inputField.text;
     NSString *defaultsIdentifier = [Enums labelFromConfigId:self.backingConfigId];
     
     [NSUserDefaults.standardUserDefaults setObject:textContent forKey:defaultsIdentifier];
+}
+
+- (void) updateContent
+{
+    [super updateContent];
+    [self.inputLabel setTextColor:([self isUserInteractionEnabled] ? UIColor.blackColor : UIColor.grayColor)];
 }
 
 @end

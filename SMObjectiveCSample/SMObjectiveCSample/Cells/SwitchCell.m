@@ -20,12 +20,14 @@
     return NSStringFromClass(SwitchCell.self);
 }
 
-- (void)prepareForReuse
+- (void) prepareForReuse
 {
     [super prepareForReuse];
     [self.switchItem setSelected:true];
     [self.switchLabel setText:@""];
     
+    [self setUserInteractionEnabled:true];
+    [self.switchLabel setTextColor:UIColor.blackColor];
 }
 
 - (void) setConfigId:(ConfigId) configId
@@ -44,6 +46,12 @@
     BOOL isEnabled = ![NSUserDefaults.standardUserDefaults boolForKey:defaultsIdentifier];
     [self.switchItem setOn:isEnabled animated:true];
     [NSUserDefaults.standardUserDefaults setBool:isEnabled forKey:defaultsIdentifier];
+}
+
+- (void) updateContent
+{
+    [super updateContent];
+    [self.switchLabel setTextColor:([self isUserInteractionEnabled] ? UIColor.blackColor : UIColor.grayColor)];
 }
 
 @end

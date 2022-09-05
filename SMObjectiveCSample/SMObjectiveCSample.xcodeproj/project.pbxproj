@@ -25,6 +25,7 @@
 		CDB4B3DF25913D88008364E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDB4B3DD25913D88008364E4 /* LaunchScreen.storyboard */; };
 		CDB4B3E225913D88008364E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3E125913D88008364E4 /* main.m */; };
 		CDB4B3EB25913F01008364E4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3EA25913F01008364E4 /* SettingsViewController.m */; };
+		CDC88C6728C58A44003BAC03 /* SampleCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC88C6628C58A44003BAC03 /* SampleCustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		CDB4B3E925913EF4008364E4 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		CDB4B3EA25913F01008364E4 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CDB4B3F22591491A008364E4 /* SMDarwin.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SMDarwin.xcframework; path = ../Release/xcframeworks/SMDarwin.xcframework; sourceTree = "<group>"; };
+		CDC88C6528C589ED003BAC03 /* SampleCustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleCustomCell.h; sourceTree = "<group>"; };
+		CDC88C6628C58A44003BAC03 /* SampleCustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleCustomCell.m; sourceTree = "<group>"; };
 		F54243D34F596980FE41E79C /* Pods-SMObjectiveCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMObjectiveCSample.debug.xcconfig"; path = "Target Support Files/Pods-SMObjectiveCSample/Pods-SMObjectiveCSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +106,8 @@
 				CD83A99525ABFE92004394E0 /* InputCell.xib */,
 				CD83A99725ABFEB2004394E0 /* InputCell.h */,
 				CD83A99825ABFEBC004394E0 /* InputCell.m */,
+				CDC88C6528C589ED003BAC03 /* SampleCustomCell.h */,
+				CDC88C6628C58A44003BAC03 /* SampleCustomCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			files = (
 				CD26DE7225AD053A00404D3B /* Enums.m in Sources */,
 				CDB4B3D725913D85008364E4 /* ViewController.m in Sources */,
+				CDC88C6728C58A44003BAC03 /* SampleCustomCell.m in Sources */,
 				CDB4B3D125913D85008364E4 /* AppDelegate.m in Sources */,
 				CDB4B3EB25913F01008364E4 /* SettingsViewController.m in Sources */,
 				CD83A99925ABFEBC004394E0 /* InputCell.m in Sources */,

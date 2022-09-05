@@ -4,9 +4,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SampleCustomCell.h"
 #import "Enums.h"
 
-@interface SwitchCell: UITableViewCell
+@interface SwitchCell: SampleCustomCell
 
 @property (weak, nonatomic) IBOutlet UISwitch *switchItem;
 @property (weak, nonatomic) IBOutlet UILabel *switchLabel;
