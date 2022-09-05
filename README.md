@@ -132,7 +132,23 @@ Scene *scene = [SceneFactory createWithUserMediaOptions: UserMediaOptionsMicroph
 [scene setWithRemoteView:self.remoteView localView:self.localView];
 ```
 
-### Connect to a Digital Human (DH) server using a valid web-socket URL and a valid JWT.
+### Connection methods
+
+The SDK supports two connection methods: connecting with an API Key generated through DDNA Studio, and connecting with a web-socket URL and JWT.
+
+#### Connecting using an API Key.
+
+Establish a connection by providing the API Key generated within DDNA Studio. Note that the domain should match the `Bundle Identifier` within the App's `Identity` section under `Target`. Provide optional `userText` to send a message to the Orchestration server during connection, and a `RetryOptions` object specifying the number of connection attempts and the delay between attempting a connection, should the connection encounter an error.
+
+```swift
+self.scene?.connect(apiKey: apiKey, userText: nil, retryOptions: RetryOptions())
+```
+
+```objective-c
+[self.scene connectWithApiKey: apiKey userText: nil retryOptions:[[RetryOptions alloc] init]]
+```
+
+#### Connecting using a valid web-socket URL and a valid JWT.
 
 Establish a connection by providing the server url from your Persona connection configuration, and a JWT constructed from the Private Key and Key Name also found in the Persona connection configuration. Provide optional `userText` to send a message to the Orchestration server during connection, and a `RetryOptions` object specifying the number of connection attempts and the delay between attempting a connection, should the connection encounter an error.
 
