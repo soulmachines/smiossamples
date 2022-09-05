@@ -26,6 +26,7 @@
 		CDB4B3BD258C4CC5008364E4 /* ConfigId.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B3BC258C4CC5008364E4 /* ConfigId.swift */; };
 		CDB4B3BF258C4D51008364E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDB4B3BE258C4D51008364E4 /* Localizable.strings */; };
 		CDB4B3C2259030DD008364E4 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = CDB4B3C1259030DD008364E4 /* SwiftJWT */; };
+		CDC88C5D28C576E1003BAC03 /* SampleCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC88C5C28C576E1003BAC03 /* SampleCustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,7 @@
 		CDB4B3BA258C3C2E008364E4 /* InputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
 		CDB4B3BC258C4CC5008364E4 /* ConfigId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigId.swift; sourceTree = "<group>"; };
 		CDB4B3BE258C4D51008364E4 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		CDC88C5C28C576E1003BAC03 /* SampleCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				CDB4B3B6258C3C15008364E4 /* SwitchCell.xib */,
 				CDB4B3B8258C3C25008364E4 /* InputCell.swift */,
 				CDB4B3BA258C3C2E008364E4 /* InputCell.xib */,
+				CDC88C5C28C576E1003BAC03 /* SampleCustomCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD8E4F03258AAB4900EE353C /* ViewController.swift in Sources */,
+				CDC88C5D28C576E1003BAC03 /* SampleCustomCell.swift in Sources */,
 				CDB4B3BD258C4CC5008364E4 /* ConfigId.swift in Sources */,
 				CD8E4EFF258AAB4900EE353C /* AppDelegate.swift in Sources */,
 				CD8E4F01258AAB4900EE353C /* SceneDelegate.swift in Sources */,
