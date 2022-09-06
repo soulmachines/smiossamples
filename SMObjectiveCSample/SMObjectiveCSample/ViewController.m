@@ -96,6 +96,49 @@ typedef enum CameraViewDirection {
 
 - (void) connect
 {
+    if(true == [NSUserDefaults.standardUserDefaults boolForKey:[Enums labelFromConfigId: UseUrlAndToken]])
+    {
+        [self connectWithUrlAndAccessToken];
+    }
+    else
+    {
+        [self connectWithAPIKey];
+    }
+}
+
+- (void) connectWithAPIKey
+{
+    NSString *apiKey = [NSUserDefaults.standardUserDefaults stringForKey:[Enums labelFromConfigId:APIKeyDescription]];
+    
+    [[self.scene connectWithApiKey:apiKey userText:nil retryOptions:[[RetryOptions alloc] init]] subscribeWithCompletion:^(Completion* completion)
+     {
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [self.connectButton setEnabled:true];
+            [self.activityIndicator stopAnimating];
+        
+            if (completion.error != nil)
+            {
+                NSLog(@"Error connecting to scene: %@", completion.error.debugDescription);
+                NSString *message = [NSString stringWithFormat:@"%@\nError stack: %@", completion.error.userInfo[NSDebugDescriptionErrorKey], (completion.error.getStack ? completion.error.getStack : @"No further errors encountered.")];
+                [self displayAlertWithTitle:@"Connection Error" andMessage:message];
+                return;
+            }
+            
+            if (completion.result != nil)
+            {
+                NSLog(@"Successful scene connection.");
+                [self.muteButton setHidden:false];
+                [self.contentAwareButton setHidden:false];
+                [self.cameraControlView setHidden:false];
+                self.connectButton.tintColor = UIColor.redColor;
+            }
+        });
+    }];
+}
+
+- (void) connectWithUrlAndAccessToken
+{
     NSString *jwt = @"";
     NSString *serverUrl = [NSUserDefaults.standardUserDefaults stringForKey:[Enums labelFromConfigId:ServerUrl]];
     
@@ -117,9 +160,10 @@ typedef enum CameraViewDirection {
         jwt = [JWTBuilder encodePayload:claimsSet].secret(privateKey).algorithm(algorithm).encode;
     }
     
-    [[self.scene connectWithUrl:(serverUrl ? serverUrl : @"") userText:nil accessToken:jwt retryOptions:[[RetryOptions alloc] init]] subscribeWithCompletion:^ (Completion* completion) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+    [[self.scene connectWithUrl:(serverUrl ? serverUrl : @"") userText:nil accessToken:jwt retryOptions:[[RetryOptions alloc] init]] subscribeWithCompletion:^ (Completion* completion)
+     {
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
             [self.connectButton setEnabled:true];
             [self.activityIndicator stopAnimating];
         
