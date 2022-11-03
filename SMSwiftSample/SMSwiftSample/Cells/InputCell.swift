@@ -17,7 +17,7 @@ class InputCell: SampleCustomCell {
         self.inputField?.text = ""
         self.inputLabel?.text = ""
         
-        self.inputField?.textColor = .black
+        self.inputField?.textColor = UIColor.label
         self.isUserInteractionEnabled = true
     }
     
@@ -31,7 +31,7 @@ class InputCell: SampleCustomCell {
     
     override func updateContent() {
         super.updateContent()
-        inputLabel?.textColor = self.isUserInteractionEnabled ? .black : .gray
+        inputLabel?.textColor = self.isUserInteractionEnabled ? .label : .secondaryLabel
     }
 }
 

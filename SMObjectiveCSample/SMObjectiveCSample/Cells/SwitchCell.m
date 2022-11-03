@@ -27,7 +27,7 @@
     [self.switchLabel setText:@""];
     
     [self setUserInteractionEnabled:true];
-    [self.switchLabel setTextColor:UIColor.blackColor];
+    [self.switchLabel setTextColor:UIColor.labelColor];
 }
 
 - (void) setConfigId:(ConfigId) configId
@@ -51,7 +51,7 @@
 - (void) updateContent
 {
     [super updateContent];
-    [self.switchLabel setTextColor:([self isUserInteractionEnabled] ? UIColor.blackColor : UIColor.grayColor)];
+    [self.switchLabel setTextColor:([self isUserInteractionEnabled] ? UIColor.labelColor : UIColor.secondaryLabelColor)];
 }
 
 @end

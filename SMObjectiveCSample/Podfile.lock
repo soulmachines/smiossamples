@@ -3,7 +3,7 @@ PODS:
   - Base64 (1.1.2)
   - JWT (2.0.2):
     - Base64 (~> 1.1.2)
-  - SMDarwin (1.2.0)
+  - SMDarwin (1.3.0)
   - Starscream (4.0.4)
   - WebRTC_iOS (1.2.0)
 

@@ -27,7 +27,7 @@
     [self.inputLabel setText:@""];
     
     [self setUserInteractionEnabled:true];
-    [self.inputLabel setTextColor:UIColor.blackColor];
+    [self.inputLabel setTextColor:UIColor.labelColor];
 }
 
 - (void) setConfigId:(ConfigId) configId
@@ -51,7 +51,7 @@
 - (void) updateContent
 {
     [super updateContent];
-    [self.inputLabel setTextColor:([self isUserInteractionEnabled] ? UIColor.blackColor : UIColor.grayColor)];
+    [self.inputLabel setTextColor:([self isUserInteractionEnabled] ? UIColor.labelColor : UIColor.secondaryLabelColor)];
 }
 
 @end

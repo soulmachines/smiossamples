@@ -17,7 +17,7 @@ class SwitchCell: SampleCustomCell {
         self.switchItem?.isSelected = true
         self.switchLabel?.text = ""
         
-        self.switchLabel?.textColor = .black
+        self.switchLabel?.textColor = UIColor.label
         self.isUserInteractionEnabled = true
     }
     
@@ -39,7 +39,7 @@ class SwitchCell: SampleCustomCell {
     
     override func updateContent() {
         super.updateContent()
-        self.switchLabel?.textColor = self.isUserInteractionEnabled ? .black : .gray
+        self.switchLabel?.textColor = self.isUserInteractionEnabled ? .label : .secondaryLabel
     }
 }
 
