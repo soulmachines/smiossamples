@@ -251,7 +251,7 @@ class ViewController: UIViewController {
     
     private func changeCameraView(toDirection direction: CameraViewDirection) {
         guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) == true else {
-            self.displayAlert(title: "Content Awareness Not Supported", message: "Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio.")
+            self.displayAlert(title: "Camera Control Disabled", message: "Camera control has been disabled. This can be configured in DDNA Studio.")
             return
         }
 
