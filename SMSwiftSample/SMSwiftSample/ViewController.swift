@@ -382,7 +382,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func toggleContentAwarenessViewCreation() {
-        guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) == true else {
+        guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_CONTENT_AWARENESS) == true else {
             self.displayAlert(title: "Content Awareness Not Supported", message: "Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio.")
             return
         }
