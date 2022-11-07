@@ -59,7 +59,7 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:soulmachines/SMDarwin.git",
       "state" : {
-        "revision" : "c2e3902a4227dfaa6178f42647b1c063fb33b35b",
+        "revision" : "1d678496045134ddbda788a0b33a39d5fbc25bc0",
         "version" : "1.3.0"
       }
     },
