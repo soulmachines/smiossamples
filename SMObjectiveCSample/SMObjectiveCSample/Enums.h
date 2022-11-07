@@ -9,18 +9,20 @@ typedef enum ConfigId {
     //Switches
     EnableOrchestration,
     UseJWT,
+    UseUrlAndToken,
     
     //Inputs
     ServerUrl,
     KeyName,
     PrivateKey,
     OrchestrationUrl,
-    JWTString
+    JWTString,
+    APIKeyDescription
 } ConfigId;
 
 typedef enum HeaderId {
-    ServerConnection,
-    AccessToken
+    APIKey,
+    ServerConnectionAccessToken
 } HeaderId;
 
 @interface Enums: NSObject

@@ -5,9 +5,9 @@
 
 //Headers
 
-"ServerConnection" = "Server Connection (required)";
+"APIKey" = "API Key";
 
-"AccessToken" = "Access Token (required)";
+"ServerConnectionAccessToken" = "Server Connection and Access Token";
 
 //Cells
 
@@ -24,3 +24,7 @@
 "OrchestrationUrl" = "Orchestration Server URL";
 
 "JWT" = "JSON Web Token - above keys will be ignored.";
+
+"APIKeyDescription" = "API Key generated using DDNA Studio.";
+
+"UseUrlAndToken" = "Use URL and Access Token to connect.";

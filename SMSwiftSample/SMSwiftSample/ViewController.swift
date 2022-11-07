@@ -101,6 +101,48 @@ class ViewController: UIViewController {
     }
     
     private func connect() {
+        if true == UserDefaults.standard.bool(forKey: ConfigId.UseUrlAndToken.rawValue) {
+            self.connectWithUrlAndAccessToken()
+        } else {
+            self.connectWithAPIKey()
+        }
+    }
+    
+    private func connectWithAPIKey() {
+        guard let apiKey = UserDefaults.standard.string(forKey: ConfigId.APIKeyDescription.rawValue), false == apiKey.isEmpty else {
+            debugPrint("Unable to retrieve API Key from settings.")
+            self.connectButton?.isEnabled = true
+            self.activityIndicator?.stopAnimating()
+            return
+        }
+        
+        self.scene?.connect(apiKey: apiKey, userText: nil, retryOptions: RetryOptions()).subscribe(completion: { completion in
+            DispatchQueue.main.async {
+                self.connectButton?.isEnabled = true
+                self.activityIndicator?.stopAnimating()
+                
+                if let connectError = completion.error {
+                    debugPrint("Error connecting to scene: \(connectError.debugDescription)")
+                    let message = """
+                    \(connectError.userInfo[NSDebugDescriptionErrorKey] ?? "")
+                    Error stack: \(connectError.getStack() ?? "No further errors encountered.")
+                    """
+                    self.displayAlert(title: "Connection Error", message: message)
+                    return
+                }
+                
+                if let _ = completion.result as? SessionInfo {
+                    debugPrint("Successful scene connection.")
+                    self.muteButton?.isHidden = false
+                    self.contentAwareButton?.isHidden = false
+                    self.cameraControlView?.isHidden = false
+                    self.connectButton?.tintColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+                }
+            }
+        })
+    }
+    
+    private func connectWithUrlAndAccessToken() {
         var jwt = ""
         let serverUrl = UserDefaults.standard.string(forKey: ConfigId.ServerUrl.rawValue) ?? ""
         
@@ -120,6 +162,8 @@ class ViewController: UIViewController {
             
             guard let privateKeyData = privateKey.data(using: .utf8) else {
                 debugPrint("Unable to parse private key to data.")
+                self.connectButton?.isEnabled = true
+                self.activityIndicator?.stopAnimating()
                 return
             }
             
@@ -207,7 +251,7 @@ class ViewController: UIViewController {
     
     private func changeCameraView(toDirection direction: CameraViewDirection) {
         guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) == true else {
-            self.displayAlert(title: "Content Awareness Not Supported", message: "Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio.")
+            self.displayAlert(title: "Camera Control Disabled", message: "Camera control has been disabled. This can be configured in DDNA Studio.")
             return
         }
 
@@ -338,7 +382,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func toggleContentAwarenessViewCreation() {
-        guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_SDK_CAMERA_CONTROL) == true else {
+        guard self.scene?.getFeatures().isFeatureFlagEnabled(.UI_CONTENT_AWARENESS) == true else {
             self.displayAlert(title: "Content Awareness Not Supported", message: "Content awareness isn't enabled for this Digital Human. This can be configured in DDNA Studio.")
             return
         }

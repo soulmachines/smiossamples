@@ -15,6 +15,8 @@
 
 @implementation SettingsViewController
 
+BOOL isUrlAndTokenSectionEnabled = false;
+
 NSArray *settingHeaders;
 NSArray *firstSettingsList;
 NSArray *secondSettingsList;
@@ -22,17 +24,21 @@ NSArray *secondSettingsList;
 CGFloat switchHeight = 60;
 CGFloat inputHeight = 90;
 
-NSString *test = @"";
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    settingHeaders = @[@(ServerConnection), @(AccessToken)];
-    firstSettingsList = @[@(ServerUrl)];
+    settingHeaders = @[@(APIKey), @(ServerConnectionAccessToken)];
+    firstSettingsList = @[@(APIKeyDescription), @(UseUrlAndToken)];
     secondSettingsList = @[@(KeyName), @(PrivateKey), @(EnableOrchestration), @(OrchestrationUrl), @(UseJWT), @(JWTString)];
     
     [self.tableView registerNib:[UINib nibWithNibName:[SwitchCell identifier] bundle:nil] forCellReuseIdentifier:[SwitchCell identifier]];
     [self.tableView registerNib:[UINib nibWithNibName:[InputCell identifier] bundle:nil] forCellReuseIdentifier:[InputCell identifier]];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    isUrlAndTokenSectionEnabled = [NSUserDefaults.standardUserDefaults boolForKey:[Enums labelFromConfigId:UseUrlAndToken]];
 }
 
 #pragma mark - Table View Data Source
@@ -64,28 +70,36 @@ NSString *test = @"";
     if (indexPath.section == 0)
     {
         ConfigId setting = (ConfigId) [firstSettingsList[indexPath.row] integerValue];
-        InputCell *inputCell = [tableView dequeueReusableCellWithIdentifier:[InputCell identifier]];
-        [inputCell setConfigId:setting];
-        [inputCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        return inputCell;
+        SampleCustomCell *cell = [self retrieveCellFromSetting:setting forTable:tableView];
+        [cell setUserInteractionEnabled:(setting == APIKeyDescription ? !isUrlAndTokenSectionEnabled : true)];
+        [cell updateContent];
+        return cell;
     }
     else
     {
         ConfigId setting = (ConfigId) [secondSettingsList[indexPath.row] integerValue];
-        if ([Enums isConfigIdSwitch:setting])
-        {
-            SwitchCell *switchCell = [tableView dequeueReusableCellWithIdentifier:[SwitchCell identifier]];
-            [switchCell setConfigId:setting];
-            [switchCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return switchCell;
-        }
-        else
-        {
-            InputCell *inputCell = [tableView dequeueReusableCellWithIdentifier:[InputCell identifier]];
-            [inputCell setConfigId:setting];
-            [inputCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            return inputCell;
-        }
+        SampleCustomCell *cell = [self retrieveCellFromSetting:setting forTable:tableView];
+        [cell setUserInteractionEnabled:isUrlAndTokenSectionEnabled];
+        [cell updateContent];
+        return cell;
+    }
+}
+
+- (SampleCustomCell *) retrieveCellFromSetting:(ConfigId)setting forTable:(UITableView *)tableView
+{
+    if ([Enums isConfigIdSwitch:setting])
+    {
+        SwitchCell *switchCell = [tableView dequeueReusableCellWithIdentifier:[SwitchCell identifier]];
+        [switchCell setConfigId:setting];
+        [switchCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return switchCell;
+    }
+    else
+    {
+        InputCell *inputCell = [tableView dequeueReusableCellWithIdentifier:[InputCell identifier]];
+        [inputCell setConfigId:setting];
+        [inputCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return inputCell;
     }
 }
 
@@ -95,7 +109,10 @@ NSString *test = @"";
     
     if (indexPath.section == 0)
     {
-        height = inputHeight;
+        if(false == [Enums isConfigIdSwitch:(ConfigId) [[firstSettingsList objectAtIndex:indexPath.row] integerValue]])
+        {
+            height = inputHeight;
+        }
     }
     else
     {
@@ -113,14 +130,19 @@ NSString *test = @"";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:false];
+    ConfigId tableSetting = (indexPath.section == 0) ? (ConfigId)[[firstSettingsList objectAtIndex:indexPath.row] integerValue] :
+                                                       (ConfigId)[[secondSettingsList objectAtIndex:indexPath.row] integerValue];
     
-    if (indexPath.section == 1)
+    if ([Enums isConfigIdSwitch:tableSetting])
     {
-        if ([Enums isConfigIdSwitch:(ConfigId)[secondSettingsList[indexPath.row] integerValue]])
-        {
-            SwitchCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            [cell didTouchCell];
-        }
+        SwitchCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell didTouchCell];
+    }
+    
+    if (tableSetting == UseUrlAndToken)
+    {
+        isUrlAndTokenSectionEnabled = [NSUserDefaults.standardUserDefaults boolForKey:[Enums labelFromConfigId:UseUrlAndToken]];
+        [tableView reloadData];
     }
 }
 @end

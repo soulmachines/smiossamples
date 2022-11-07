@@ -12,19 +12,21 @@
     switch (configId) {
         case EnableOrchestration: return @"EnableOrchestration";
         case UseJWT: return @"UseJWT";
+        case UseUrlAndToken: return @"UseUrlAndToken";
         case ServerUrl: return @"ServerUrl";
         case KeyName: return @"KeyName";
         case PrivateKey: return @"PrivateKey";
-        case OrchestrationUrl: return @"Orchestration URL";
-        case JWTString: return @"JWTString";
+        case OrchestrationUrl: return @"OrchestrationUrl";
+        case JWTString: return @"JWT";
+        case APIKeyDescription: return @"APIKeyDescription";
     }
 }
 
 + (NSString *) labelFromHeaderId:(HeaderId)headerId
 {
     switch (headerId) {
-        case AccessToken: return @"AccessToken";
-        case ServerConnection: return @"ServerConnection";
+        case APIKey: return @"APIKey";
+        case ServerConnectionAccessToken: return @"ServerConnectionAccessToken";
     }
 }
 
@@ -32,8 +34,10 @@
 {
     switch (configId)
     {
+        case UseUrlAndToken:
+            //fallthrough - UseUrlAndToken, EnableOrchestration, and UseJWT are all switch cases.
         case EnableOrchestration:
-            //fallthrough - EnableOrchestration and UseJWT are both switch cases.
+            //fallthrough - UseUrlAndToken, EnableOrchestration, and UseJWT are all switch cases.
         case UseJWT:
             return true;
 

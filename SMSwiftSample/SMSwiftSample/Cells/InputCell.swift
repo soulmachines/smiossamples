@@ -5,7 +5,7 @@
 
 import UIKit
 
-class InputCell: UITableViewCell {
+class InputCell: SampleCustomCell {
     static let identifier = String(describing: InputCell.self)
     
     @IBOutlet private weak var inputField: UITextField?
@@ -16,6 +16,9 @@ class InputCell: UITableViewCell {
     override func prepareForReuse() {
         self.inputField?.text = ""
         self.inputLabel?.text = ""
+        
+        self.inputField?.textColor = UIColor.label
+        self.isUserInteractionEnabled = true
     }
     
     func set(configId: ConfigId) {
@@ -24,6 +27,11 @@ class InputCell: UITableViewCell {
         
         let textContent = UserDefaults.standard.string(forKey: configId.rawValue)
         self.inputField?.text = textContent
+    }
+    
+    override func updateContent() {
+        super.updateContent()
+        inputLabel?.textColor = self.isUserInteractionEnabled ? .label : .secondaryLabel
     }
 }
 

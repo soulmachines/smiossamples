@@ -11,24 +11,38 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView?
     
-    let settingHeaders: [HeaderId] = [.ServerConnection, .AccessToken]
-    let firstSettingsList: [ConfigId] = [.ServerUrl]
-    let secondSettingsList: [ConfigId] = [.KeyName, .PrivateKey, .EnableOrchestration, .OrchestrationUrl, .UseJWT, .JWT]
+    private var isUrlAndTokenSectionEnabled = false
+    
+    let settingHeaders: [HeaderId] = [.APIKey, .ServerConnectionAccessToken]
+    let firstSettingsList: [ConfigId] = [.APIKeyDescription, .UseUrlAndToken]
+    let secondSettingsList: [ConfigId] = [.ServerUrl, .KeyName, .PrivateKey, .EnableOrchestration, .OrchestrationUrl, .UseJWT, .JWT]
     
     override func viewDidLoad() {
         self.tableView?.register(UINib(nibName: SwitchCell.identifier, bundle: nil), forCellReuseIdentifier: SwitchCell.identifier)
         self.tableView?.register(UINib(nibName: InputCell.identifier, bundle: nil), forCellReuseIdentifier: InputCell.identifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.isUrlAndTokenSectionEnabled = UserDefaults.standard.bool(forKey: ConfigId.UseUrlAndToken.rawValue)
     }
 }
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        if indexPath.section == 1 {
-            if self.secondSettingsList[indexPath.row].isSwitch() {
-                let cell = tableView.cellForRow(at: indexPath) as? SwitchCell
-                cell?.didTouchCell()
-            }
+        let tableSetting: ConfigId = indexPath.section == 0 ? self.firstSettingsList[indexPath.row] : self.secondSettingsList[indexPath.row]
+        
+        if tableSetting.isSwitch() {
+            let cell = tableView.cellForRow(at: indexPath) as? SwitchCell
+            cell?.didTouchCell()
+        }
+        
+        if tableSetting == .UseUrlAndToken {
+            //Update the user interactive state of the second settings list
+            self.isUrlAndTokenSectionEnabled = UserDefaults.standard.bool(forKey: ConfigId.UseUrlAndToken.rawValue)
+            tableView.reloadData()
         }
     }
 }
@@ -49,36 +63,47 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let setting = self.firstSettingsList[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: InputCell.identifier) as? InputCell {
+            let cell = self.retrieveCell(fromSetting: setting, forTable: tableView)
+            cell.isUserInteractionEnabled = setting == .APIKeyDescription ? !self.isUrlAndTokenSectionEnabled : true
+            cell.updateContent()
+            
+            return cell
+        } else {
+            let setting = self.secondSettingsList[indexPath.row]
+            let cell = self.retrieveCell(fromSetting: setting, forTable: tableView)
+            cell.isUserInteractionEnabled = self.isUrlAndTokenSectionEnabled
+            cell.updateContent()
+            
+            return cell
+        }
+    }
+    
+    private func retrieveCell(fromSetting setting: ConfigId, forTable tableView: UITableView) -> SampleCustomCell {
+        if setting.isSwitch() {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier) as? SwitchCell {
                 cell.set(configId: setting)
                 cell.selectionStyle = .none
                 return cell
             }
         } else {
-            let setting = self.secondSettingsList[indexPath.row]
-            if setting.isSwitch() {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier) as? SwitchCell {
-                    cell.set(configId: setting)
-                    cell.selectionStyle = .none
-                    return cell
-                }
-            } else {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: InputCell.identifier) as? InputCell {
-                    cell.set(configId: setting)
-                    cell.selectionStyle = .none
-                    return cell
-                }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: InputCell.identifier) as? InputCell {
+                cell.set(configId: setting)
+                cell.selectionStyle = .none
+                return cell
             }
         }
+        
         debugPrint("Returning basic cell")
-        return UITableViewCell()
+        return SampleCustomCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = SettingsViewController.switchHeight
         
         if indexPath.section == 0 {
-            height = SettingsViewController.inputHeight
+            if false == self.firstSettingsList[indexPath.row].isSwitch() {
+                height = SettingsViewController.inputHeight
+            }
         } else {
             if false == self.secondSettingsList[indexPath.row].isSwitch() {
                 height = SettingsViewController.inputHeight

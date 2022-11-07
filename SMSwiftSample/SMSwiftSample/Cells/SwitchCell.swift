@@ -5,7 +5,7 @@
 
 import UIKit
 
-class SwitchCell: UITableViewCell {
+class SwitchCell: SampleCustomCell {
     static let identifier = String(describing: SwitchCell.self)
     
     @IBOutlet private weak var switchItem: UISwitch?
@@ -16,6 +16,9 @@ class SwitchCell: UITableViewCell {
     override func prepareForReuse() {
         self.switchItem?.isSelected = true
         self.switchLabel?.text = ""
+        
+        self.switchLabel?.textColor = UIColor.label
+        self.isUserInteractionEnabled = true
     }
     
     func set(configId: ConfigId) {
@@ -32,6 +35,11 @@ class SwitchCell: UITableViewCell {
             self.switchItem?.setOn(isEnabled, animated: true)
             UserDefaults.standard.set(isEnabled, forKey: id)
         }
+    }
+    
+    override func updateContent() {
+        super.updateContent()
+        self.switchLabel?.textColor = self.isUserInteractionEnabled ? .label : .secondaryLabel
     }
 }
 

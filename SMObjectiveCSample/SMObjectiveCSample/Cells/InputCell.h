@@ -4,9 +4,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SampleCustomCell.h"
 #import "Enums.h"
 
-@interface InputCell: UITableViewCell
+@interface InputCell: SampleCustomCell
 
 @property (weak, nonatomic) IBOutlet UITextField *inputField;
 @property (weak, nonatomic) IBOutlet UILabel *inputLabel;
