@@ -1,8 +1,7 @@
 //
+// Copyright (c) 2021 Soul Machines. All rights reserved.
 //  ContentAwareView.m
 //  SMObjectiveCSample
-//
-//  Created by Max McGrath on 16/09/21.
 //
 
 #import <Foundation/Foundation.h>

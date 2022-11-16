@@ -1,4 +1,5 @@
 //
+// Copyright (c) 2021 Soul Machines. All rights reserved.
 //  AppDelegate.m
 //  SMObjectiveCSample
 //

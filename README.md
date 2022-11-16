@@ -599,3 +599,10 @@ echo $(lipo -info "$FRAMEWORK_EXECUTABLE_PATH")
 done
 
 ```
+
+## Licensing
+This repository is licensed under the Apache License, Version 2.0. See
+[LICENSE](./LICENSE) for the full license text.
+
+## Issues
+For any issues, please reach out to one of our Customer Success team members.

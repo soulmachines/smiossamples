@@ -1,8 +1,8 @@
 //
+// Copyright (c) 2021 Soul Machines. All rights reserved.
 //  SampleCustomCell.m
 //  SMObjectiveCSample
 //
-//  Created by Max McGrath on 5/09/22.
 //
 
 #import "SampleCustomCell.h"
