@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 Soul Machines. All rights reserved.
+// Copyright (c) 2022 Soul Machines. All rights reserved.
 //  SceneDelegate.swift
 //  SMSwiftSample
 //
