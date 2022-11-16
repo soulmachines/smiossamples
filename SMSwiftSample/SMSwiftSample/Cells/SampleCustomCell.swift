@@ -1,8 +1,8 @@
 //
+// Copyright (c) 2022 Soul Machines. All rights reserved.
 //  SampleCustomCell.swift
 //  SMSwiftSample
 //
-//  Created by Max McGrath on 5/09/22.
 //
 
 import UIKit

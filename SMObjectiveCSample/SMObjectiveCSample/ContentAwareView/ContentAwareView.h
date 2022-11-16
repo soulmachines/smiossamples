@@ -1,8 +1,7 @@
 //
+// Copyright (c) 2022 Soul Machines. All rights reserved.
 //  ContentAwareView.h
 //  SMObjectiveCSample
-//
-//  Created by Max McGrath on 16/09/21.
 //
 
 #import <UIKit/UIKit.h>

@@ -6,6 +6,8 @@ This workspace shows how to use the Soul Machines iOS SDK and pull the library i
 
 Open the workspace in Xcode, and update the target to either `SMSwiftSample` or `SMObjectiveCSample`. 
 
+Open the Project Setting for Swift/Objective-C. Open the Signing & Capabilities and on the Signing->Team section, specify the one you use for your Apple Development.
+
 ### Swift Project
 
 The Swift project should automatically import dependencies via Swift Package Manager. After this process has completed, run the project.
@@ -599,3 +601,10 @@ echo $(lipo -info "$FRAMEWORK_EXECUTABLE_PATH")
 done
 
 ```
+
+## Licensing
+This repository is licensed under the Apache License, Version 2.0. See
+[LICENSE](./LICENSE) for the full license text.
+
+## Issues
+For any issues, please reach out to one of our Customer Success team members.
