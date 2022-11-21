@@ -28,6 +28,8 @@ SMDarwin supports iOS 12 and above.
 SMDarwin 1.0.4 and above depend on [WebRTC_iOS](https://github.com/soulmachines/WebRTC_iOS).
 SMDarwin 1.2.0 requires the aforementioned library at release 1.1.0 or greater.
 
+N.B. Please reach out to one of our Customer Success team members to check if you have the appropriate license to get access to the repositories listed below as access is currently restricted and given accordingly.
+
 ## Importing the library
 
 ### Swift Packages
